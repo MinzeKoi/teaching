@@ -1,0 +1,90 @@
+\documentclass[UTF8,a4paper,11pt]{ctexart}
+\usepackage[margin=22mm,headheight=14pt,footskip=12mm]{geometry}
+\usepackage{amsmath,amssymb,array,longtable,booktabs,tikz,needspace,fancyhdr,hyperref}
+\usepackage{microtype}
+\hypersetup{colorlinks=false,pdfborder={0 0 0},pdfauthor={Good Learning},bookmarks=false}
+\newfontfamily\circledfont{Segoe UI Symbol}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\setlength{\LTleft}{0pt}\setlength{\LTright}{0pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{.65em}
+\linespread{1.18}
+\raggedbottom
+\setcounter{secnumdepth}{0}
+\ctexset{section={format=\Large\bfseries\sffamily,beforeskip=1.35em,afterskip=.65em},
+subsection={format=\large\bfseries\sffamily,beforeskip=1em,afterskip=.45em}}
+\newcommand{\chaptertitle}[1]{\Needspace{8\baselineskip}\noindent{\LARGE\bfseries\sffamily #1}\par\vspace{4mm}\hrule\vspace{6mm}}
+\newcommand{\CompactQuestion}[2]{\par\noindent\textbf{#1.}\ #2\par\vspace{.8em}}
+\newcommand{\PracticeQuestion}[3]{\par\Needspace{4\baselineskip}\noindent\begin{minipage}{\linewidth}\textbf{#1.}\ #2\par\noindent\rule{0pt}{#3mm}\par\end{minipage}\par}
+\newcommand{\CompactQuestionColon}[2]{\par\noindent\textbf{#1：}\ #2\par\vspace{.8em}}
+\newcommand{\PracticeQuestionColon}[3]{\par\Needspace{4\baselineskip}\noindent\begin{minipage}{\linewidth}\textbf{#1：}\ #2\par\noindent\rule{0pt}{#3mm}\par\end{minipage}\par}
+\pagestyle{fancy}\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}
+\begin{document}
+\chaptertitle{第 1 天 · 45 分钟起点诊断}
+\textbf{2026 年 11 月 15 日｜复习模式｜K02、K03、K08、K14、K17、K19}
+
+今天抽查五项能力，找出最先需要补的步骤。准备纸笔，用近似值的题可以在最后用计算器验算。前置知识为加权求和、简单求导和向量点积。卡住时写下目前能做的第一步，约 4 分钟后先跳过。
+
+\textbf{25 分钟闭卷诊断 → 10 分钟对照例题、选做补练 → 10 分钟核对和记录。} 先做 D1–D5。交卷后只选最卡的一组例题及补练，其他补练可留到对应章节。答案统一放在最后。
+
+\section{独立练习 · 五道诊断题}
+\CompactQuestion{D1}{图 $G=(V,E)$ 用邻接表表示，DFS 用访问标记遍历整个图（包含可能存在的多个连通分量）。写出时间复杂度，并说明两个量各从何处产生。来自用户材料的改写 · 复习资料填空 7。}
+\CompactQuestion{D2}{用整个 $2\times2$ 窗口对四个像素 $4,12,4,5$ 做一次平均池化，求输出。来自用户材料的改写 · 填空 22。}
+\CompactQuestion{D3}{一步行动的奖励依次可能为 $1,3,2,4$，各自概率为 $0.1,0.2,0.3,0.4$。求即时奖励的期望并列式。来自用户材料的改写 · 填空 50。}
+\CompactQuestion{D4}{损失 $L(w)=(w-2)^2$，学习率 $\eta=0.13$，初始值 $w_0=1.5$。求一次梯度下降后 $w_1$，写出起点导数。来自用户材料的改写 · 计算 7，采用新编损失，只做首步。}
+\CompactQuestion{D5}{“苹果”向量为 $(2,1,3)$，“信息”向量为 $(0,5,4)$。求它们的余弦相似度，写出点积和两个模。来自用户材料的改写 · 计算 8，只取一组。}
+\clearpage
+\section{单元 1 · 数清对象，再决定怎样求和}
+\textbf{DFS 例题（新编题）。} 无向图有顶点 $A,B,C$，边为 $AB,BC$。外层检查 3 个顶点以覆盖全图。DFS 给每个首次到达的顶点打标记，随后扫描这张顶点的邻接表。邻接表的长度之和为 $1+2+1=4=2|E|$，合起来得到 $O(|V|+|E|)$。有向图只存出边时每条边通常扫描一次，数量级相同。换成邻接矩阵时，每个顶点需扫一整行，复杂度随表示改变。
+
+\textbf{加权求和例题（新编题）。} 窗口里是 $2,6$，平均池化给每个数相同权重 $1/2$，得到 $4$。若这两个值是概率分别为 $0.75,0.25$ 的奖励，期望为 $2(0.75)+6(0.25)=3$。先核对权重和为 1，再检查结果是否落在 2 与 6 之间。
+
+\Needspace{4\baselineskip}
+\subsection{举一反三 · 选做}
+\CompactQuestion{A1}{新编填步题。一张邻接表表示的无向图有 5 个顶点、4 条边，外层检查了 5 个顶点。全图 DFS 扫描的邻接表条目总数是几项？}
+\CompactQuestion{A2}{新编变式。同一张 5 顶点图改用邻接矩阵，全图 DFS 对每个首次访问的顶点扫描整行。总共检查多少个矩阵单元？说明是哪一条条件改变了。}
+\CompactQuestion{A3}{新编填步题。奖励 $0,8$ 的概率分别为 $0.25,0.75$，补写 $E[R]=0(0.25)+8(\underline{\quad})$ 并求值。}
+\CompactQuestion{A4}{新编变式。同样的两个数 $0,8$ 现在是池化窗口内的两个像素，求平均池化，并解释权重为什么改变。}
+\clearpage
+\section{单元 2 · 参数更新与向量方向}
+\textbf{梯度更新例题（新编题）。} 令 $L(w)=(w-3)^2$、$w_0=2$、$\eta=0.1$。先求 $L'(w)=2(w-3)$，得到当前梯度 $-2$。再用 $w_1=w_0-\eta L'(w_0)=2.2$。负梯度在这里指向增大 $w$ 的方向。代回得到 $L(2.2)=0.64<1$。实际下降还取决于学习率。
+
+\textbf{余弦例题（新编题）。} 取 $a=(1,2),b=(2,0)$。先求点积 $a\cdot b=2$，再分别求模 $\sqrt5,2$，得到 $\cos(a,b)=2/(2\sqrt5)=1/\sqrt5$。两个模都非零才定义，结果应在 $[-1,1]$。
+
+\Needspace{4\baselineskip}
+\subsection{举一反三 · 选做}
+\CompactQuestion{B1}{新编填步题。$L(w)=(w+1)^2$，$w_0=1$，$\eta=0.1$，已知 $L'(w_0)=4$。补出 $w_1=1-0.1\times\underline{\quad}$，并求值。}
+\CompactQuestion{B2}{新编变式。仍用 B1 的损失和起点，将学习率改为 $1.2$。求一步后的参数并比较前后损失，解释改变了什么。}
+\CompactQuestion{B3}{新编填步题。$a=(1,1),b=(1,0)$，已知点积为 1。补出余弦公式的分母并计算。}
+\CompactQuestion{B4}{新编变式。把 B3 的 $b$ 扩大为 $10b$。求新的余弦相似度，说明哪些量变了；若改成零向量，又会怎样？}
+\textbf{回顾。} 五题各自核对一项条件：图的存储表示、池化窗口、概率和、梯度的求值位置、向量是否非零。D1–D5 本身是跨主题混合回顾，以独立作答的原始结果为准。
+
+\clearpage
+\section{答案与解析 · 作答后查阅}
+\Needspace{4\baselineskip}
+\subsection{D1–D5 · 诊断题}
+\textbf{D1.} $O(|V|+|E|)$。外层遍历顶点，各顶点至多展开一次；邻接表总长度在有向图为 $|E|$，无向图为 $2|E|$。重复遇到顶点时用访问标记跳过。若只从单一起点出发，访问范围只含从该点可达的部分。
+
+\textbf{D2.} $(4+12+4+5)/4=25/4=6.25$。窗口有四个元素、每个权重相同；直接取 12 算的是最大池化。
+
+\textbf{D3.} $1(0.1)+3(0.2)+2(0.3)+4(0.4)=2.9$。概率和为 1，答案在最小奖励 1 与最大奖励 4 之间。这里计算的是一步期望，未涉及折扣。
+
+\textbf{D4.} $L'(w)=2(w-2)$，所以 $L'(1.5)=-1$。按更新式，$w_1=1.5-0.13(-1)=1.63$。损失从 $0.25$ 降为 $0.1369$，可用来验算更新方向。
+
+\textbf{D5.} 点积为 $2(0)+1(5)+3(4)=17$。两向量的模分别为 $\sqrt{14}$、$\sqrt{41}$，所以结果为 $17/\sqrt{574}\approx0.710$。这里比较方向，点积仍需除以两个模的乘积。
+
+\Needspace{4\baselineskip}
+\subsection{A1–B4 · 补练}
+\begin{itemize}
+\item \textbf{A1} 扫描 $2\times4=8$ 项。每条无向边在两个端点的邻接表各占一项。
+\item \textbf{A2} 扫描 $5\times5=25$ 个单元。存储表示变成矩阵，每个顶点要查完整一行，边稀少也照样检查。
+\item \textbf{A3} 补 $0.75$，结果为 $6$。两个概率和为 1。
+\item \textbf{A4} 输出为 $(0+8)/2=4$。窗口平均是等权，这里的权重各为 $1/2$。
+\item \textbf{B1} 补 $4$，得 $w_1=0.6$。更新式减去当前梯度乘以学习率。
+\item \textbf{B2} $w_1=1-1.2(4)=-3.8$。损失由 $4$ 升至 $7.84$。梯度相同，较大的步长越过了最小点，最终离最小点更远。
+\item \textbf{B3} 分母为 $\sqrt2\times1$，结果 $1/\sqrt2$。两者均为非零向量。
+\item \textbf{B4} 点积和 $b$ 的模都变为原来的 10 倍，余弦仍是 $1/\sqrt2$。若 $b$ 是零向量，分母为 0，余弦相似度无定义。
+\end{itemize}
+\section{交回结果}
+逐题标「独立完成」「有提示完成」或「待复做」，写下总用时和最先卡住的步骤。可以这样发给我：D1（答案与状态），……，D5（答案与状态），共用时多少分钟，最卡哪一步。五项都记录即可结束当天任务。第 2 天会据作答优先补数学或图搜索中最早出错的环节。
+
+\end{document}

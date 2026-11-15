@@ -1,0 +1,152 @@
+\documentclass[UTF8,a4paper,11pt]{ctexart}
+\usepackage[margin=22mm,headheight=14pt,footskip=12mm]{geometry}
+\usepackage{amsmath,amssymb,array,longtable,booktabs,tikz,needspace,fancyhdr,hyperref}
+\usepackage{microtype}
+\hypersetup{colorlinks=false,pdfborder={0 0 0},pdfauthor={Good Learning},bookmarks=false}
+\newfontfamily\circledfont{Segoe UI Symbol}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\setlength{\LTleft}{0pt}\setlength{\LTright}{0pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{.65em}
+\linespread{1.18}
+\raggedbottom
+\setcounter{secnumdepth}{0}
+\ctexset{section={format=\Large\bfseries\sffamily,beforeskip=1.35em,afterskip=.65em},
+subsection={format=\large\bfseries\sffamily,beforeskip=1em,afterskip=.45em}}
+\newcommand{\chaptertitle}[1]{\Needspace{8\baselineskip}\noindent{\LARGE\bfseries\sffamily #1}\par\vspace{4mm}\hrule\vspace{6mm}}
+\newcommand{\CompactQuestion}[2]{\par\noindent\textbf{#1.}\ #2\par\vspace{.8em}}
+\newcommand{\PracticeQuestion}[3]{\par\Needspace{4\baselineskip}\noindent\begin{minipage}{\linewidth}\textbf{#1.}\ #2\par\noindent\rule{0pt}{#3mm}\par\end{minipage}\par}
+\newcommand{\CompactQuestionColon}[2]{\par\noindent\textbf{#1：}\ #2\par\vspace{.8em}}
+\newcommand{\PracticeQuestionColon}[3]{\par\Needspace{4\baselineskip}\noindent\begin{minipage}{\linewidth}\textbf{#1：}\ #2\par\noindent\rule{0pt}{#3mm}\par\end{minipage}\par}
+\pagestyle{fancy}\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}
+\begin{document}
+\thispagestyle{empty}
+\noindent{\sffamily\footnotesize 知识结构}\hfill{\sffamily\footnotesize 学习导图}\par
+\vspace{7mm}
+\noindent{\sffamily\fontsize{25}{30}\selectfont\bfseries 人工智能知识清单}\par
+\vspace{4mm}\noindent\rule{\linewidth}{.85pt}\par\vspace{6mm}
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,every node/.style={font=\sffamily}]
+\path[use as bounding box] (-8.1,-18.7) rectangle (8.1,.4);
+\node[font=\sffamily\Large\bfseries] at (0,-.65) {从基础工具到可独立完成的题型};
+\node[font=\sffamily\small,text=black!55] at (0,-1.35) {初版／正式范围待核};
+\draw[line width=.85pt] (0,-1.9) -- (0,-2.45);
+\draw[line width=.85pt] (-4,-2.45) -- (4,-2.45);
+\draw[line width=.85pt] (-4,-2.45) -- (-4,-2.8);
+\draw[line width=.85pt] (4,-2.45) -- (4,-2.8);
+\node[font=\sffamily\bfseries] at (-4,-3.15) {基础与传统方法};
+\node[font=\sffamily\bfseries] at (4,-3.15) {网络与应用};
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (-7.4,-4.3) {01};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\large\bfseries] at (-6.25,-4.28) {绪论与数学};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (-6.25,-5.05) {导数、概率与矩阵\\[.25em]为梯度、注意力和状态转移做准备};
+\node[anchor=west,font=\sffamily\footnotesize,text=black!60] at (-6.25,-6.35) {K01–K02};
+\draw[black!35,line width=.4pt] (-7.4,-6.65) -- (-0.25,-6.65);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (-7.4,-8.399999999999999) {02};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\large\bfseries] at (-6.25,-8.379999999999999) {搜索};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (-6.25,-9.149999999999999) {图搜索、启发式与对抗\\[.25em]手推扩展、路径和剪枝};
+\node[anchor=west,font=\sffamily\footnotesize,text=black!60] at (-6.25,-10.45) {K03–K05};
+\draw[black!35,line width=.4pt] (-7.4,-10.749999999999998) -- (-0.25,-10.749999999999998);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (-7.4,-12.5) {03};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\large\bfseries] at (-6.25,-12.48) {机器学习与集成};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (-6.25,-13.25) {泛化、梯度、分裂与集成\\[.25em]手算更新、叶值和残差};
+\node[anchor=west,font=\sffamily\footnotesize,text=black!60] at (-6.25,-14.55) {K06–K10};
+\draw[black!35,line width=.4pt] (-7.4,-14.85) -- (-0.25,-14.85);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (0.8,-4.3) {04};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\large\bfseries] at (1.95,-4.28) {神经网络与视觉};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (1.95,-5.05) {前后向、卷积、上采样和检测\\[.25em]核对输出形状与计算步骤};
+\node[anchor=west,font=\sffamily\footnotesize,text=black!60] at (1.95,-6.35) {K11–K15};
+\draw[black!35,line width=.4pt] (0.8,-6.65) -- (7.95,-6.65);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (0.8,-8.399999999999999) {05};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\large\bfseries] at (1.95,-8.379999999999999) {自然语言处理};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (1.95,-9.149999999999999) {语言模型、词向量与注意力\\[.25em]计算概率、相似度和加权输出};
+\node[anchor=west,font=\sffamily\footnotesize,text=black!60] at (1.95,-10.45) {K16–K18};
+\draw[black!35,line width=.4pt] (0.8,-10.749999999999998) -- (7.95,-10.749999999999998);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (0.8,-12.5) {06};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\large\bfseries] at (1.95,-12.48) {强化学习};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (1.95,-13.25) {转移、价值与策略\\[.25em]列矩阵和方程，更新动作价值};
+\node[anchor=west,font=\sffamily\footnotesize,text=black!60] at (1.95,-14.55) {K19–K20};
+\draw[black!35,line width=.4pt] (0.8,-14.85) -- (7.95,-14.85);
+\node[font=\sffamily\small,text=black!55] at (0,-17.95) {K21 为待确认的延伸主题 · 各条掌握程度待测};
+\end{tikzpicture}
+\end{center}
+\clearpage
+
+\chaptertitle{人工智能知识清单}
+\textbf{初版／正式范围待核 · 2026 年 12 月 8 日考试}
+
+以《人工智能复习资料》的知识要点和练习建立清单。所有条目均为“掌握待测”。“高”表示题库有可重复训练的计算或作业支持，“中”表示先掌握概念与典型做法，“低”表示快速过一遍或有余力再补。优先级用于分配复习时间，实际考题及分值待确认。
+
+\section{01 绪论与数学基础}
+\subsection{K01 · 人工智能入门｜低}
+定义、图灵测试、研究领域与应用。能用一个任务举例，区分机器学习、视觉和自然语言处理解决的问题。依据为复习资料第 0 章及绪论课件。前置为无。验证方式为闭卷写定义、两个领域及各自的实例。
+
+\subsection{K02 · 导数、概率与矩阵｜中}
+一阶导数、二阶导数的极值判别条件、偏导和链式法则；条件概率、事件运算、分布、期望、方差与协方差；矩阵乘法、转置、可逆条件和二三阶行列式。前置为函数与代数。依据为第 1 章、填空 50–51，计算 1、3、12–14 将这些工具用于其他章节。验证方式为分别完成一题偏导或极值、一题期望、一题矩阵乘法，并在乘法前标维度。
+
+\section{02 搜索}
+\subsection{K03 · 状态空间、图搜索、DFS 与 BFS｜中}
+说明状态、动作、目标与路径代价，区分栈、队列、优先队列。手推含重复状态的小图，记录访问顺序、前沿和已访问集合。能在邻接表图与搜索树的表述中分别写复杂度，说明 BFS 的最短路径保证所需的边代价条件。前置为图、树和队列。依据为第 2 章、填空 7–10、46，以及搜索 1 课件。
+
+\subsection{K04 · 启发式搜索与最短路｜高}
+比较贪婪搜索的启发值、Dijkstra（非负边权）与 A* 的实际代价加启发值。手算时写出最优前沿选择、更新及终止。能解释可采纳与一致性，并注明图搜索是否允许重开节点。前置为 K03。依据为第 2 章、计算 16、搜索 2 课件和铁路网络大作业。验证方式为复做一道路径题，给出扩展次序、最终路径与总成本。
+
+\subsection{K05 · 局部搜索与博弈｜中}
+能区分爬山、模拟退火、遗传算法及其处理局部最优的方式，解释双向搜索需要能从目标侧扩展。对博弈树计算极小极大值，按给定顺序标 Alpha–Beta 剪枝，并复述蒙特卡罗树搜索的四步。前置为 K03。依据为第 2 章、搜索 2 课件、黑白棋作业。验证方式为做一棵浅层博弈树并写两条算法比较。
+
+\section{03 机器学习、回归与集成}
+\subsection{K06 · 学习范式、数据划分与泛化｜高}
+区分监督、无监督、半监督与强化学习，区分模型、策略和算法，说明数据收集、清洗及训练、验证、测试的作用。给出训练与验证误差时判断欠拟合或过拟合并给出相应处理。能说明均方误差和交叉熵的常用场景。前置为 K02。依据为第 3 章、填空 1、19、36–37，简答 6–8，以及回归大作业。验证方式为用一个数据划分情境解释优化、泛化和调参边界。
+
+\subsection{K07 · 聚类｜中}
+能从给定初始中心手算一轮 K 均值的分配和中心更新，解释初始化的影响与谱聚类借助相似图的基本思路。前置为距离与矩阵（K02）。依据为第 3.5 节与机器学习课件。验证方式为交一轮分配表和新中心。
+
+\subsection{K08 · 线性模型、梯度与正则化｜高}
+区分回归连续输出、分类判别与阈值、SVM 最大间隔及感知机。写出平方误差目标，手算梯度下降三步，对比批量、随机与小批量更新，以及岭回归的 L2 和套索回归的 L1 惩罚。解释负梯度方向时写清局部条件，解释收敛时写清损失形状和步长。前置为 K02、K06。依据为第 4 章、简答 4、9–11、计算 7。验证方式为三步更新表与一张对比表。
+
+\subsection{K09 · 决策树分裂与叶预测｜高}
+计算熵、加权子节点不纯度和信息增益，比较候选阈值，说明分类叶取多数类、回归叶在平方误差下取均值，并解释深度限制与剪枝。价格题先明确“信息增益”采用的准则，连续标签的回归分裂按授课口径核对。前置为 K02、K06。依据为第 5–6 章、计算 17–18。验证方式为列两组分裂的样本、准则值、叶预测和选择理由。
+
+\subsection{K10 · 随机森林与梯度提升｜高}
+说明 Bootstrap 有放回的样本抽取和候选特征抽取，回答袋装与提升、投票与平均、基学习器相关性的影响。能算独立模型多数票概率和平方误差下的一轮残差拟合。前置为 K02、K09。依据为第 6 章、填空 42–43、简答 5 和集成课件。验证方式为交多数投票算式、一步残差表及随机森林与 GBDT 的比较。
+
+\section{04 神经网络与视觉}
+\subsection{K11 · 感知机、前向与反向传播｜高}
+区分单层感知机和多层网络，计算 Sigmoid、ReLU、Softmax 与两层前向结果，写出逐层链式法则、权重梯度与形状；讨论激活饱和、梯度消失和爆炸。前置为 K02、K08。依据为第 7 章、填空 32–41、简答 12–13、计算 1–3、19–21、28。验证方式为独立完成一题前向、一题权重反传。
+
+\subsection{K12 · CNN、RNN 与 LSTM｜高}
+解释 CNN 的局部连接和权值共享，画出 RNN 隐状态递推与 LSTM 的遗忘、输入、输出门，说明门控用 Sigmoid 的含义。前置为 K11。依据为第 7 章、填空 29、39–41、LSTM 遗忘门简答。验证方式为标出门控图上的状态、门值范围和信息流向，并做一道隐状态拼接。
+
+\subsection{K13 · 成像、滤波、视差与相似性｜中}
+能写小孔模型的坐标关系并注明成像平面约定，区分采样与量化、平滑与边缘检测，解释高斯尺度与细节、双目视差与深度的关系，并比较窗口差异。前置为 K02。依据为第 8 章、判断 38–39、填空 23–25、30、简答 16。验证方式为写一题投影及一道滤波或视差说明。
+
+\subsection{K14 · 卷积、池化、插值与转置卷积｜高}
+给定输入、核、步长、填充时，先写输出尺寸再逐窗运算，接 ReLU 或逐通道池化。能算双线性插值和转置卷积的输出及重叠贡献；注明是否翻核及所用填充约定。前置为 K02、K11。依据为第 7–8 章、简答 1、14–15、计算 4–6、9、22–23、26。验证方式为完成两道不同步长的运算并标中间形状。
+
+\subsection{K15 · 检测与分割｜高}
+区分分类、检测、语义与实例分割；画出 Faster R-CNN 的特征图、RPN、候选框、分类与框回归。按每处 Anchor 数计算总数，先区分每个 Anchor 用一个或两个分类分数的实现约定，再计算张量规模。前置为 K14。依据为第 8 章、填空 52–56、计算 24。验证方式为画流程并写出 Anchor、分类分支和框回归分支的数量关系。
+
+\section{05 自然语言处理}
+\subsection{K16 · 分词、语言模型与解码｜高}
+区分理解与生成、分词与向量化，从频次计算 n-gram 条件概率、序列概率与困惑度，区分固定长度与长度至多的组合计数。能比较贪婪与束搜索并保留累计分数，说明束宽 1 的行为。前置为 K02、K03。依据为第 9 章、填空 3–6、12、14–18、49、57–59、计算 25。验证方式为交概率计算和小型解码表，并写明长度、边界符或平滑约定。
+
+\subsection{K17 · 词表示与相似度｜高}
+区分独热编码、分布式表示和词嵌入，说明 CBOW 与 Skip-Gram 的预测方向、维度取舍、内积适合度与余弦相似度的差别。前置为 K02。依据为第 9 章、填空 13、27–28、简答 2–3、计算 8。验证方式为手算两组非零词向量余弦并判断哪组更相近。
+
+\Needspace{7\baselineskip}
+\subsection{K18 · Seq2Seq、注意力与位置｜高}
+能画编码器与解码器，区分自注意力与交叉注意力；手算 Q、K、V 投影、缩放点积、按键归一化与加权输出。能说明多头维度、位置编码和因果掩码的作用，区分因果掩码与一般掩码。前置为 K02、K11、K17。依据为第 9 章、填空 20、47–48、简答 17、计算 10、27。验证方式为完成一个查询的整行注意力并标张量形状。
+
+\section{06 强化学习}
+\subsection{K19 · 马尔可夫链、转移与稳态｜高}
+区分无后效性与时间齐次，写转移矩阵、两步转移、初始分布推进和稳态方程，识别吸收状态；区分存在稳态与从给定起点收敛。前置为 K02。依据为第 10 章、判断 7、36、名词解释 27、计算 12–15。验证方式为求一次二步分布和稳态并检查概率和。
+
+\subsection{K20 · MDP、贝尔曼方程与 Q-learning｜高}
+写出状态、动作、转移、奖励、折扣和策略，区分即时奖励期望、折扣回报、状态价值和动作价值。能按给定策略写贝尔曼期望方程，按最优选择写最优方程，解释值迭代并手算一次 Q-learning 更新，处理终止状态。前置为 K19。依据为第 10 章、填空 44–45、50–51、值迭代简答及计算 11。验证方式为交两状态方程和一条更新记录。
+
+\section{补充范围与来源}
+\textbf{K21 · 课件及笔记延伸｜低，范围待核。} PCA、关联规则、PAC/VC、AdaBoost、XGBoost、U-Net、DQN 等先记在候选，教师确认或遇到题库对应题后再安排细练。分别以前面的机器学习、集成、视觉和强化学习条目为前置。验证方式为按确认范围补一题核心步骤；暂未确认时只核对主题是否在考试范围。
+
+主要依据为科目资料中的《人工智能复习资料.docx》第 0–10 章知识要点及题库（判断、填空、名词解释、简答、计算），计算题编号为该文件“计算题”小节内的原编号。现有本地课件第 0–3、6–10 章，以及 Obsidian 课程笔记与黑白棋、铁路网络、回归作业，用于对照做法。第 4–5 章按复习资料的编排编号。正式考纲、试卷题型权重、考试时长及教师标准答案待补。
+
+带公式、图和表的题以 Word 原件为准。计算 26 的“无填充”与括号中的参数表述冲突，解题时分别写出两种条件下的结果，再核对授课口径。计算 17–18 的分裂准则、计算 24 的分类分数约定也列为需核对事项。
+
+\end{document}
