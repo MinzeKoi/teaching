@@ -1,0 +1,191 @@
+\documentclass[UTF8,a4paper,11pt]{ctexart}
+\usepackage[margin=22mm,headheight=14pt,footskip=12mm]{geometry}
+\usepackage{amsmath,amssymb,array,longtable,booktabs,tikz,needspace,fancyhdr,hyperref}
+\usepackage{microtype}
+\hypersetup{colorlinks=false,pdfborder={0 0 0},pdfauthor={Good Learning},bookmarks=false}
+\newfontfamily\circledfont{Segoe UI Symbol}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\setlength{\LTleft}{0pt}\setlength{\LTright}{0pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{.65em}
+\linespread{1.18}
+\raggedbottom
+\setcounter{secnumdepth}{0}
+\ctexset{section={format=\Large\bfseries\sffamily,beforeskip=1.35em,afterskip=.65em},
+subsection={format=\large\bfseries\sffamily,beforeskip=1em,afterskip=.45em}}
+\newcommand{\chaptertitle}[1]{\Needspace{8\baselineskip}\noindent{\LARGE\bfseries\sffamily #1}\par\vspace{4mm}\hrule\vspace{6mm}}
+\newcommand{\CompactQuestion}[2]{\par\noindent\textbf{#1.}\ #2\par\vspace{.8em}}
+\newcommand{\PracticeQuestion}[3]{\par\Needspace{4\baselineskip}\noindent\begin{minipage}{\linewidth}\textbf{#1.}\ #2\par\noindent\rule{0pt}{#3mm}\par\end{minipage}\par}
+\newcommand{\CompactQuestionColon}[2]{\par\noindent\textbf{#1：}\ #2\par\vspace{.8em}}
+\newcommand{\PracticeQuestionColon}[3]{\par\Needspace{4\baselineskip}\noindent\begin{minipage}{\linewidth}\textbf{#1：}\ #2\par\noindent\rule{0pt}{#3mm}\par\end{minipage}\par}
+\pagestyle{fancy}\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}
+\begin{document}
+\thispagestyle{empty}
+\noindent{\sffamily\footnotesize 每日课程}\hfill{\sffamily\footnotesize 学习导图}\par
+\vspace{7mm}
+\noindent{\sffamily\fontsize{25}{30}\selectfont\bfseries 第 3 天 · 图搜索与最短路径（紧凑排版型）}\par
+\vspace{4mm}\noindent\rule{\linewidth}{.85pt}\par\vspace{6mm}
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,every node/.style={font=\sffamily}]
+\path[use as bounding box] (-8.1,-18.7) rectangle (8.1,.4);
+\node[font=\sffamily\Large\bfseries] at (0,-.6) {前沿排序决定下一步扩展谁};
+\node[font=\sffamily\small,text=black!55] at (0,-1.25) {2026 年 11 月 17 日 · K03–K04};
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (-7.35,-2.35) {01};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (-6.199999999999999,-2.3200000000000003) {图与存储};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (-6.199999999999999,-3.0700000000000003) {邻接表扫实际条目\\[.25em]邻接矩阵每次扫一整行};
+\draw[black!35,line width=.4pt] (-7.35,-5.050000000000001) -- (-0.2999999999999998,-5.050000000000001);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (0.85,-2.35) {02};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (2.0,-2.3200000000000003) {DFS};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (2.0,-3.0700000000000003) {栈顶优先，沿当前路径深入\\[.25em]先访问的目标未必最短};
+\draw[black!35,line width=.4pt] (0.85,-5.050000000000001) -- (7.8999999999999995,-5.050000000000001);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (0.85,-7.7) {03};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (2.0,-7.67) {BFS};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (2.0,-8.42) {队首优先，按边数分层\\[.25em]等正权时保证成本最优};
+\draw[black!35,line width=.4pt] (0.85,-10.4) -- (7.8999999999999995,-10.4);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (-7.35,-7.7) {04};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (-6.199999999999999,-7.67) {Dijkstra};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (-6.199999999999999,-8.42) {按当前累计成本排序\\[.25em]非负边权下取出时定值};
+\draw[black!35,line width=.4pt] (-7.35,-10.4) -- (-0.2999999999999998,-10.4);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (-7.35,-13.05) {05};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (-6.199999999999999,-13.020000000000001) {A*};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (-6.199999999999999,-13.770000000000001) {累计成本加剩余估计\\[.25em]一致性支持无需重开的图搜索};
+\draw[black!35,line width=.4pt] (-7.35,-15.75) -- (-0.2999999999999998,-15.75);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (0.85,-13.05) {06};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (2.0,-13.020000000000001) {结果验收};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (2.0,-13.770000000000001) {列前沿，按父节点回溯\\[.25em]核对总成本与算法条件};
+\draw[black!35,line width=.4pt] (0.85,-15.75) -- (7.8999999999999995,-15.75);
+\draw[->,black!55,line width=.8pt] (-.12,-3.7) -- (.55,-3.7);
+\draw[->,black!55,line width=.8pt] (7.85,-5.45) -- (7.85,-7.2);
+\draw[->,black!55,line width=.8pt] (.52,-9.05) -- (-.15,-9.05);
+\draw[->,black!55,line width=.8pt] (-7.85,-10.8) -- (-7.85,-12.55);
+\draw[->,black!55,line width=.8pt] (-.12,-14.4) -- (.55,-14.4);
+\node[font=\sffamily\small,text=black!55] at (0,-18.1) {10 分钟回顾 · 25 分钟例题 · 40 分钟练习 · 15 分钟订正};
+\end{tikzpicture}
+\end{center}
+\clearpage
+
+\chaptertitle{第 3 天 · 图搜索与最短路径}
+\textbf{2026 年 11 月 17 日｜复习模式｜K03–K04｜90 分钟}
+
+\textbf{目标。} 在同一张图上写出 DFS、BFS、Dijkstra 和 A* 的前沿及取出顺序。给出路径、边数和总成本，并说明每种算法的适用条件。
+
+\textbf{时间。} 热身 10 分钟，四个例题 25 分钟，填步、变式及混合题 40 分钟，核对与订正 15 分钟。读例题时先遮住下一步，自己选一次待处理节点。全部做完再翻答案。
+
+\textbf{前置。} 图的顶点表示状态，边表示允许的动作，箭头决定能往哪里走。路径成本是沿途边权之和。前沿保存已发现、待处理的状态。本课例题及练习均为新编题。
+
+\section{热身}
+昨天已经数出 6 个顶点的无向图有 8 个邻接表条目。若要遍历全图，外层循环检查每个顶点一次。每个顶点首次展开时，邻接矩阵要检查该顶点对应的一整行，邻接表只扫描该点实际存在的出边。
+
+\textbf{H1.} 无向图顶点为 A、B、C、D、E、F，边为 A—B、A—C、C—D、E—F。全图 DFS 外层检查多少个顶点？邻接表扫描多少条目？邻接矩阵扫描多少格？列出各个顶点的度，再说明一条无向边为何贡献两个表项。
+
+\section{共用路线图}
+从 S 出发，到 G 停止。下列均为\textbf{有向边}，括号内是边权。
+
+\begin{itemize}
+\item S → A (1)，S → B (2)。
+\item A → C (2)，A → G (8)。
+\item B → A (1)，B → G (5)。
+\item C → G (1)。G 无出边。
+\end{itemize}
+扫描邻居按字母顺序。同优先级也按字母顺序。BFS、Dijkstra 和 A* 在取出目标时停止，递归式 DFS 在首次把目标压入路径栈时停止。每步记录处理后的前沿。
+
+\clearpage
+\section{单元 1 · DFS 与栈}
+栈后进先出。这里用递归等价的栈：栈中保留当前路径，从栈顶依次尝试未访问的邻居。找到一个就入栈并标记，邻居用完就退栈。记录首次入栈顺序。全图邻接表遍历需要 $O(V+E)$ 时间，邻接矩阵需 $O(V^2)$，其中 $V$、$E$ 是顶点数和边数。搜索树若每点最多分支 $b$、最大搜索深度为 $m$，穷举 DFS 的节点数上界为 $O(b^m)$（$b>1$）。DFS 首次到达目标时无最短路保证。
+
+\subsection{例题}
+\begin{enumerate}
+\item 栈底到顶为 $[S]$。S 的首个邻居 A 尚未访问，入栈成 $[S,A]$。
+\item A 先试 C，栈为 $[S,A,C]$。C 的邻居 G 可访问，栈变成 $[S,A,C,G]$。
+\item 到达 G，首次访问顺序为 S、A、C、G。栈中的路径为 S → A → C → G，三条边，成本 $1+2+1=4$。此处恰好成本最小，原因可用后面的 Dijkstra 核对。
+\end{enumerate}
+\subsection{举一反三}
+\CompactQuestion{A1}{共用图中，栈为 $[S,A]$，A 的邻居依次为 C、G。按本课规则写下一次入栈后的栈，并说明选择依据。}
+\CompactQuestion{A2}{保留共用图并把 A → C 的边权改成 10。写 DFS 首次到达目标的路径和成本，再给一条成本更低的路径。指出边权变化是否影响栈的选择。}
+\clearpage
+\section{单元 2 · BFS 与队列}
+队列先进先出。起点入队时标记已发现，邻居首次入队时标记并记录父节点。这样同一个顶点只排队一次。队列按距起点的边数分层，首次发现某点的路径边数最少。所有边权等于同一个正数时，这也保证成本最小。邻接表和邻接矩阵的全图时间复杂度分别为 $O(V+E)$ 和 $O(V^2)$。
+
+\subsection{例题}
+\begin{enumerate}
+\item 初始队列 $[S]$。取出 S，按序加入 A、B，队列为 $[A,B]$，两者父节点都是 S。
+\item 取出 A，加入 C、G，队列为 $[B,C,G]$，C 和 G 的父节点都是 A。
+\item 取出 B，A、G 均已发现，队列为 $[C,G]$。再取 C，G 已发现，队列为 $[G]$。
+\item 取出 G 停止。取出顺序为 S、A、B、C、G。沿父节点回溯得 S → A → G，两条边，成本 9。三条边的 S → A → C → G 成本仅 4。
+\end{enumerate}
+\subsection{举一反三}
+\CompactQuestion{B1}{共用图取出 S 和 A 后，队列为 $[B,C,G]$。取出 B 后，写剩余队列和 G 的父节点，说明是否需要改变它。}
+\CompactQuestion{B2}{删除 A → G，其他边保持原样。写每次取出后的队列、最终路径及成本。再把图上所有剩余边的成本统一为 2，写 BFS 路径的成本和最优依据。}
+\clearpage
+\section{单元 3 · Dijkstra 与累计成本}
+令 $g(v)$ 为目前找到的 S 到 $v$ 的最小成本，初始 $g(S)=0$，其他为无穷。每次取前沿中 $g$ 最小的点 $u$。对每条出边 $u\to v$，算候选值 $g(u)+w(u,v)$。若严格更小，就更新 $g(v)$ 及父节点，这一步叫松弛。边权非负时，最小 $g$ 节点取出后已定值。目标也在\textbf{取出时}确认。若有负边，这个定值依据失效。
+
+\subsection{例题}
+\begin{enumerate}
+\item 取 S（0），前沿为 A（1）、B（2）；它们代表当前已知路径。
+\item 取 A（1），得到 C（3）、G（9），前沿为 B（2）、C（3）、G（9）。
+\item 取 B（2），到 A 的候选值为 3，原值 1 更小。到 G 候选值为 7，优于 9。前沿为 C（3）、G（7），G 的父节点改为 B。
+\item 取 C（3），到 G 候选值为 4，更新成 G（4），G 的父节点改为 C。
+\item 取 G（4）停止。回溯 G ← C ← A ← S，总成本 $1+2+1=4$。第一次生成 G 时的 9 只是当时的上界。
+\end{enumerate}
+\subsection{举一反三}
+\CompactQuestion{C1}{共用图取出 B 时，$g(B)=2$，$g(G)=9$。补写对 B → G 的松弛算式、更新值和 G 的父节点。}
+\CompactQuestion{C2}{把 C → G 边权由 1 改为 5。重做 Dijkstra，记录每轮前沿、最后一次成功更新 G 的来源、最终路径及成本。注明为何可以在取出 G 时停。}
+\clearpage
+\section{单元 4 · A* 与启发函数}
+A* 以 $f(v)=g(v)+h(v)$ 排序。$g$ 是已经走过的实际成本，$h$ 是从 $v$ 到 G 的剩余成本估计；贪婪最佳优先搜索只按 $h$ 排序。A* 更新某点时用较小的候选 $g$ 改写其父节点，再算 $f$。可采纳指 $0\le h(v)\le h^*(v)$，其中 $h^*$ 为真实最短剩余成本。一致性要求 $h(G)=0$ 且每条边满足 $h(u)\le w(u,v)+h(v)$。一致性推出可采纳；非负边权下，此时图搜索可以在目标取出时停，已扩展节点无须重开。若只知可采纳，采用允许用更小 $g$ 重开节点的实现。
+
+\subsection{例题}
+给定 $h(S)=4$、$h(A)=3$、$h(B)=4$、$h(C)=1$、$h(G)=0$。
+
+\begin{enumerate}
+\item 检查一致性。按题给边顺序，逐边右侧 边权加终点的启发值 为 4、6、3、8、4、5、1，分别不小于各自起点的 $h$。
+\item 取 S，前沿按 $(g,h,f)$ 记为 A（1,3,4）、B（2,4,6）。选 A，因为 4 小于 6。
+\item 展开 A 后得 C（3,1,4）、B（2,4,6）、G（9,0,9）。选 C，因为它的 $f$ 最小。
+\item 从 C 得到 G 的候选 $g=3+1=4$，更新后前沿为 G（4,0,4）、B（2,4,6）。取出 G。
+\item 取出顺序 S、A、C、G，路径 S → A → C → G，成本 4。回溯时使用 G 更新后的父节点 C。
+\end{enumerate}
+\subsection{举一反三}
+\CompactQuestion{D1}{共用图中展开 A 后，已知 $g(C)=3$、$h(C)=1$，B 的 $f=6$，G 的 $f=9$。补写 C 的 $f$、下一次取谁及理由。}
+\CompactQuestion{D2}{同 C2，把 C → G 改为 5，启发值保持原样。说明原来的一致性是否仍成立，再写 A* 每轮前沿的 $(g,h,f)$、最终路径及成本。比较两算法先处理 B 还是 C。}
+\clearpage
+\section{独立练习}
+\CompactQuestion{P1}{无向图有顶点 S、A、B、C、G，边为 S—A、S—B、A—C、C—G、B—G。邻居按字母顺序，全边权为 1。从 S 出发，在取出或递归到达 G 时停止，分别写 BFS 队列和 DFS 路径栈的变化及各自返回路径。若遍历全图，邻接表读多少项、矩阵读多少格？}
+\CompactQuestion{P2}{回到共用有向图，边权恢复原值。只把 $h(C)$ 改为 5。检验 C → G 和 A → C 的一致性，判断 C 的估计是否可采纳。按 $f$ 手推到第一次取出 G，写路径和成本，并选一种本课算法求真正最短路径。}
+\CompactQuestion{P3}{小型铁路图采用有向边 P → Q（4）、P → R（1）、R → Q（1）、Q → T（2）、R → T（6）。从 P 到 T，求最省费用路线。选择本课一种不需要启发值的算法，写每轮前沿和父节点变化。再问：若只要求经过最少的区间，按边数计算，使用哪个算法？给出一条最少边路径。}
+\textbf{验收。} P1 写全两种前沿与扫描次数，P2 找出失效条件和返回成本，P3 写全前沿、路径和成本。目标为三题至少两题独立写全。订正时标出第一处不同的前沿或条件。反馈可发题号、步骤与实际用时，也可发手写照片。
+
+\clearpage
+\section{答案与解析}
+完成练习后再看。若路径不同，先对照首次入队、首次入栈或更新父节点的那一步。
+
+\subsection{热身与填步、变式}
+\textbf{H1.} 外层检查 6 个顶点。A 至 F 的度依次为 2、1、2、1、1、1，合计 8。无向边在两端邻接表各存一项。矩阵每顶点扫 6 格，共 $6\times6=36$ 格。实际扫描工作与图的表示有关。
+
+\textbf{A1.} $[S,A,C]$。栈顶 A 按字母序先试 C，而 C 尚未访问。
+
+\textbf{A2.} DFS 路径仍为 S → A → C → G，成本 $1+10+1=12$。S → B → G 成本 $2+5=7$，更低。DFS 用邻居顺序和访问标记决定下一步，改权没有改变这两项。
+
+\textbf{B1.} 队列为 $[C,G]$。B 的邻居是 A、G，两者均已标记为已发现。G 的父节点仍是 A。
+
+\textbf{B2.} 取出 S 后 $[A,B]$；取 A 后 $[B,C]$；取 B 后 $[C,G]$；取 C 后 $[G]$；取 G 停。G 首次由 B 入队，路径 S → B → G，原成本为 7。统一边权为 2 后队列不变，总成本为 4。每条边同价且为正，最少两条边也就是最小总成本。
+
+\textbf{C1.} $2+5=7<9$，更新 $g(G)=7$，父节点为 B。G 留在前沿，等待取出确认。
+
+\textbf{C2.} 取 S 后 A（1）、B（2）；取 A 后 B（2）、C（3）、G（9）；取 B 后 C（3）、G（7）。取 C 时到 G 候选为 $3+5=8$，保留 G（7）。因此最后一次成功更新来自 B，取 G 停止，路径 S → B → G，成本 7。边权非负，G 取出时是未定值点中累计成本最小者。
+
+\textbf{D1.} $f(C)=3+1=4$，比 6 和 9 小，下一次取 C。
+
+\textbf{D2.} C → G 的右侧从 1 增到 5，原约束 $1\le1$ 仍满足，其他边不变。取 S 后 A（1,3,4）、B（2,4,6）；取 A 后 C（3,1,4）、B（2,4,6）、G（9,0,9）；取 C 后 B（2,4,6）、G（8,0,8）；取 B 后 G（7,0,7），再取 G。父节点最终为 B，路径 S → B → G，成本 7。A* 先选 C，因为 $f(C)=4<6$；Dijkstra 先选 B，因为 $g(B)=2<3$。
+
+\clearpage
+\subsection{混合题答案}
+\textbf{P1.} BFS 队列从 $[S]$ 开始，依次为 $[A,B]$、$[B,C]$、$[C,G]$、$[G]$，取 G 停止。B 首次发现 G，故路径 S → B → G，成本 2。DFS 栈依次为 $[S]$、$[S,A]$、$[S,A,C]$、$[S,A,C,G]$，各次都跳过已访问邻居，成本为 3。全图共有 5 条无向边，每边贡献 2 项，共 10 项；5 个顶点各扫 5 格，共 25 格。
+
+\textbf{P2.} C → G 要求 $5\le1+0$，失败；A → C 要求 $3\le2+5$，成立。C 可直达 G，真实剩余成本为 1，故 $h(C)=5$ 高估。取 S 后前沿按 $f$ 为 A（4）、B（6）；取 A 后为 B（6）、C（8）、G（9）；取 B 后为 G（7）、C（8）。先取出 G，返回 S → B → G，成本 7。真最短路可用 Dijkstra 求得：取出次序 S、A、B、C、G，G 的候选成本依次为 9、7、4，最终为 S → A → C → G，成本 4。
+
+\textbf{P3.} 边权非负，可用 Dijkstra。初始 P（0）；取 P 后前沿 R（1）、Q（4），二者父节点为 P。取 R 后为 Q（2）、T（7），两者父节点改为或设为 R。取 Q 后为 T（4），T 的父节点改为 Q。取 T 后回溯得 P → R → Q → T，成本 $1+1+2=4$。若只数边，用 BFS。P 没有直达 T 的边，P → Q → T 有两条边，可作为最少边路径。
+
+\subsection{闭卷回忆}
+用四句话写出 DFS、BFS、Dijkstra、A* 各自从前沿取谁。再写两条检查规则：有向边只能顺箭头松弛；用 A* 的图搜索保证时，先说明启发函数条件与是否重开节点。
+
+\end{document}
