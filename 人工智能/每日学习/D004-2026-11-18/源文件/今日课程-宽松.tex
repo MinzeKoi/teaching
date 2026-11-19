@@ -1,0 +1,176 @@
+\documentclass[UTF8,a4paper,11pt]{ctexart}
+\usepackage[margin=22mm,headheight=14pt,footskip=12mm]{geometry}
+\usepackage{amsmath,amssymb,array,longtable,booktabs,tikz,needspace,fancyhdr,hyperref}
+\usepackage{microtype}
+\hypersetup{colorlinks=false,pdfborder={0 0 0},pdfauthor={Good Learning},bookmarks=false}
+\newfontfamily\circledfont{Segoe UI Symbol}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\setlength{\LTleft}{0pt}\setlength{\LTright}{0pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{.65em}
+\linespread{1.18}
+\raggedbottom
+\setcounter{secnumdepth}{0}
+\ctexset{section={format=\Large\bfseries\sffamily,beforeskip=1.35em,afterskip=.65em},
+subsection={format=\large\bfseries\sffamily,beforeskip=1em,afterskip=.45em}}
+\newcommand{\chaptertitle}[1]{\Needspace{8\baselineskip}\noindent{\LARGE\bfseries\sffamily #1}\par\vspace{4mm}\hrule\vspace{6mm}}
+\newcommand{\CompactQuestion}[2]{\par\noindent\textbf{#1.}\ #2\par\vspace{.8em}}
+\newcommand{\PracticeQuestion}[3]{\par\Needspace{4\baselineskip}\noindent\begin{minipage}{\linewidth}\textbf{#1.}\ #2\par\noindent\rule{0pt}{#3mm}\par\end{minipage}\par}
+\newcommand{\CompactQuestionColon}[2]{\par\noindent\textbf{#1：}\ #2\par\vspace{.8em}}
+\newcommand{\PracticeQuestionColon}[3]{\par\Needspace{4\baselineskip}\noindent\begin{minipage}{\linewidth}\textbf{#1：}\ #2\par\noindent\rule{0pt}{#3mm}\par\end{minipage}\par}
+\pagestyle{fancy}\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}
+\begin{document}
+\thispagestyle{empty}
+\noindent{\sffamily\footnotesize 每日课程}\hfill{\sffamily\footnotesize 学习导图}\par
+\vspace{7mm}
+\noindent{\sffamily\fontsize{25}{30}\selectfont\bfseries 第 4 天 · 局部搜索与博弈（宽松排版型）}\par
+\vspace{4mm}\noindent\rule{\linewidth}{.85pt}\par\vspace{6mm}
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,every node/.style={font=\sffamily}]
+\path[use as bounding box] (-8.1,-18.7) rectangle (8.1,.4);
+\node[font=\sffamily\Large\bfseries] at (0,-.6) {从扩展状态到选择着法};
+\node[font=\sffamily\small,text=black!55] at (0,-1.25) {2026 年 11 月 18 日 · K03–K05};
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (-7.35,-2.35) {01};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (-6.199999999999999,-2.3200000000000003) {双向搜索};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (-6.199999999999999,-3.0700000000000003) {目标侧沿反向边找前驱\\[.25em]两侧相遇后拼路径};
+\draw[black!35,line width=.4pt] (-7.35,-5.050000000000001) -- (-0.2999999999999998,-5.050000000000001);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (0.85,-2.35) {02};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (2.0,-2.3200000000000003) {爬山与退火};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (2.0,-3.0700000000000003) {爬山选择更好的邻居\\[.25em]退火按温度接受部分降分};
+\draw[black!35,line width=.4pt] (0.85,-5.050000000000001) -- (7.8999999999999995,-5.050000000000001);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (0.85,-7.7) {03};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (2.0,-7.67) {遗传算法};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (2.0,-8.42) {适应度决定选择倾向\\[.25em]交叉与突变产生新候选};
+\draw[black!35,line width=.4pt] (0.85,-10.4) -- (7.8999999999999995,-10.4);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (-7.35,-7.7) {04};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (-6.199999999999999,-7.67) {极小极大};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (-6.199999999999999,-8.42) {MAX 取最大，MIN 取最小\\[.25em]从叶值向根回推};
+\draw[black!35,line width=.4pt] (-7.35,-10.4) -- (-0.2999999999999998,-10.4);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (-7.35,-13.05) {05};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (-6.199999999999999,-13.020000000000001) {Alpha–Beta};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (-6.199999999999999,-13.770000000000001) {维护上下界，比较后剪枝\\[.25em]着法顺序影响访问量};
+\draw[black!35,line width=.4pt] (-7.35,-15.75) -- (-0.2999999999999998,-15.75);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (0.85,-13.05) {06};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (2.0,-13.020000000000001) {蒙特卡罗树搜索};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (2.0,-13.770000000000001) {选择、扩展、模拟、回传\\[.25em]按采样统计选择着法};
+\draw[black!35,line width=.4pt] (0.85,-15.75) -- (7.8999999999999995,-15.75);
+\draw[->,black!55,line width=.8pt] (-.12,-3.7) -- (.55,-3.7);
+\draw[->,black!55,line width=.8pt] (7.85,-5.45) -- (7.85,-7.2);
+\draw[->,black!55,line width=.8pt] (.52,-9.05) -- (-.15,-9.05);
+\draw[->,black!55,line width=.8pt] (-7.85,-10.8) -- (-7.85,-12.55);
+\draw[->,black!55,line width=.8pt] (-.12,-14.4) -- (.55,-14.4);
+\node[font=\sffamily\small,text=black!55] at (0,-18.1) {10 分钟回顾 · 25 分钟例题 · 40 分钟练习 · 15 分钟订正};
+\end{tikzpicture}
+\end{center}
+\clearpage
+
+\chaptertitle{第 4 天 · 局部搜索与博弈}
+\textbf{2026 年 11 月 18 日｜复习模式｜K03–K05｜90 分钟}
+
+\textbf{目标。} 给出双向搜索的起步条件，解释局部最优与退火的接受规则。手算一棵浅层博弈树的根值与最佳着法，标出 Alpha–Beta 跳过的叶子，并比较极小极大、Alpha–Beta 与蒙特卡罗树搜索。
+
+\textbf{时间。} 10 分钟做 H1、H2，25 分钟读四个单元和例题，40 分钟做填步题、变式和 P1–P3，15 分钟核对。先独立完成，再翻到答案。
+
+\textbf{前置。} 队列按先入先出。前沿保存所有待处理节点。极小极大用同一个视角计分，本课所有叶值都从 MAX 的视角给出。全部题目均为新编题，棋局只保留少量候选着法。
+
+\section{热身}
+\subsection{举一反三}
+\PracticeQuestion{H1}{昨天 C2、D2 都在展开 A 后漏写了 B。现在取 A 前，前沿有 A 和 B，且 $g(A)=1$、$g(B)=2$。A 的出边为 A → C（2）、A → G（8）。启发值 $h(A)=3$、$h(B)=4$、$h(C)=1$、$h(G)=0$。写出展开 A 后的完整前沿，分别圈出 Dijkstra 和 A* 下一步取谁。}{35}
+\PracticeQuestion{H2}{一张 5 顶点无向图有 3 条边。全图 DFS 每个顶点恰好展开一次。邻接表扫描几项？邻接矩阵逐行完整扫描几格？写乘法算式。}{35}
+\clearpage
+\section{单元 1 · 双向搜索}
+当起点和目标明确，可同时从两端搜索。有向图的目标侧沿反向边展开，也就是找当前点的前驱。无权图两侧用 BFS，每次完整扩展一层，维护已发现集合和父节点。相遇时用两侧的父节点拼接，并把目标侧路段写成原图方向。有权图若要求最小总成本，需要能处理相应边权并有正确终止条件的算法。
+
+\subsection{例题}
+有向无权图的边为 S → A、S → B、A → C、B → D、C → G。从两边各扩展一层后，正向发现 A、B，反向发现 C，因为进入 G 的边来自 C。再正向扩展一层，得到 C、D，与反向集合交于 C。拼接得 S → A → C → G，共三条边。G 的唯一前驱是 C，而到 C 至少两步，因此三步已最短。
+
+\subsection{举一反三}
+\PracticeQuestion{A1}{在例题中，从 G 反向扩展第一层得到谁？依据原图中的哪条边？}{23}
+\PracticeQuestion{A2}{加入 B → G。各从 S、G 扩展一层，写出两侧新发现集合、交点和最短路径。解释为何一条边到不了 G。}{26}
+\clearpage
+\section{单元 2 · 爬山、模拟退火与遗传算法}
+以最大化评分 $F$ 为例。严格爬山每步选择分数最高且严格更好的邻居。若没有更优邻居就停，因此会在局部最优或平台停住。模拟退火先抽一个邻居，改进就接受。若分数下降 $\Delta=F(\text{当前})-F(\text{候选})>0$，以 $\exp(-\Delta/T)$ 的概率接受，其中温度 $T>0$。抽到的均匀随机数小于该概率时接受。温度下降时，同样的降分更难被接受。
+
+遗传算法同时保留一组候选解。评估适应度后选父代，交叉重组两份编码，突变改变部分编码，再更新种群。交叉和突变都可能破坏现有好解，单次操作也未必提高适应度。
+
+\subsection{例题}
+状态连成 A—B—C—D，分数依次为 2、5、4、9。爬山从 A 到 B 后停，因为 B 的两个邻居 A、C 都更低。模拟退火在 B 提议 C，降分 1。若 $T=2$，接受概率 $e^{-1/2}\approx0.607$。随机数为 0.50 时接受，再提议 D 就会因增分而接受。沿邻接关系核对，每一步只走了一条边。
+
+\subsection{举一反三}
+\PracticeQuestion{B1}{仍在 B 提议 C，$T=2$，随机数改为 0.70。补写接受或拒绝的决定和比较式。}{24}
+\PracticeQuestion{B2}{从 B 出发，候选仍为 C，随机数为 0.50。温度降为 0.5 时会怎样？再设爬山允许从 B 直接走到 D，写它会选哪一个邻居并解释。}{34}
+\clearpage
+\section{单元 3 · 极小极大与博弈树}
+在双人轮流、零和、完全信息的确定性博弈中，MAX 希望分数尽量高，MIN 希望同一分数尽量低。终局用实际效用，提前截断时用局面估值。从叶子向根回推，MAX 层取最大，MIN 层取最小。
+
+\subsection{例题}
+黑白棋简化树的根是 MAX，可选着法 A、B、C。每个着法下有两个 MIN 应手，其结束分数按从左到右列出。
+
+\begin{itemize}
+\item A 的叶值为 5、7。
+\item B 的叶值为 3、9。
+\item C 的叶值为 6、8。
+\end{itemize}
+先回推 A、B、C，MIN 分别选 $\min(5,7)=5$、$\min(3,9)=3$、$\min(6,8)=6$。根取 $\max(5,3,6)=6$，走 C。若 MAX 走 B，MIN 可立即选择 3，因此看到叶值 9 也不能把 B 的回推值写为 9。
+
+\subsection{举一反三}
+\PracticeQuestion{C1}{保持例题，已知 A 回推为 5、C 回推为 6，补写 B 的值、根值和着法。}{27}
+\PracticeQuestion{C2}{把 C 的第一个叶值从 6 改为 4。写三个 MIN 值、根值及最佳着法，指出哪次应手改变了 MAX 的选择。}{35}
+\clearpage
+\section{单元 4 · Alpha–Beta 与蒙特卡罗树搜索}
+Alpha–Beta 在相同博弈树和叶值上求同一个极小极大根值。$\alpha$ 表示 MAX 目前能保证的下界，$\beta$ 表示 MIN 目前能保证的上界。根以 $(-\infty,+\infty)$ 开始。MAX 用更高的子值提高 $\alpha$，MIN 用更低的子值降低 $\beta$。若 $\alpha\ge\beta$，可跳过当前节点剩余分支。剪掉的分支可能改变该子节点的精确值，所以把截断时得到的界和完整回推值区分开。
+
+\subsection{例题}
+沿用单元 3 的树，按 A、B、C 和叶子从左到右访问。
+
+\begin{enumerate}
+\item A 的两个叶子都读到，A 返回 5。根更新 $\alpha=5$。
+\item 到 B 时看到叶值 3，MIN 更新 $\beta=3$。B 的最终值至多为 3，根已有 5，所以跳过 B 的第二个叶子 9。
+\item C 继承根的 $\alpha=5$，并使用自己的入参 $\beta=+\infty$。第一个叶子 6 使 $\beta=6>5$，继续读 8。C 返回 6，根更新为 6，走 C。共读 5 个叶子。
+\end{enumerate}
+蒙特卡罗树搜索（MCTS）在有限预算下反复做四步。选择阶段按树策略在已建树中选节点，兼顾已有回报和探索。扩展阶段加入一个未试动作。模拟阶段从新节点运行一局取得回报。回传阶段沿路径更新访问次数和回报统计。它依据采样结果选着，有限次模拟一般不给出精确极小极大值。回报方向要保持约定，例如统一记录 MAX 的回报，MIN 选边时按自己的目标使用这些统计。
+
+\subsection{举一反三}
+\PracticeQuestion{D1}{原例读完 A 后，根 $\alpha=5$。来到 B 先读到 3。写更新后的 $\beta$、剪枝不等式和被跳过的叶子。}{32}
+\PracticeQuestion{D2}{改用 C、A、B 的根着法顺序，各子树仍从左到右。逐步记根的 $\alpha$、各 MIN 第一次更新的 $\beta$、跳过的叶子和访问总数。核对根值和最佳着法。}{32}
+\clearpage
+\section{独立练习}
+\PracticeQuestion{P1}{新树的根为 MAX，着法 L、M、R 都通往 MIN。叶值按左到右分别为 L（4、6、8）、M（7、2、9）、R（4、5、10）。先完整回推出根值和所有最佳着法。再按 L、M、R 顺序做 Alpha–Beta，记录使剪枝成立的 $(\alpha,\beta)$、跳过的叶子和访问总数。说明若题目要求列出所有并列最佳着法，R 的截断结果为何还需核验。}{35}
+\PracticeQuestion{P2}{三种状态呈直线 X—Y—Z，分数为 6、5、10。从 X 开始，比较爬山和一次模拟退火。退火在 X 提议 Y，取 $T=1$、随机数 0.30，随后若到达 Y 就提议 Z。再给一个遗传算法的操作例子，用编码 1010 与 0101 在第二位后交叉，写一个子代并突变其最后一位。}{35}
+\PracticeQuestion{P3}{用两句话比较极小极大、Alpha–Beta 和 MCTS。然后写出 MCTS 四步。假设一次模拟回报为 MAX 的 1 分，路径上某节点之前访问 3 次、累计回报 2，在始终以 MAX 为计分视角时，写出回传后的访问次数、累计回报和平均值。}{35}
+\textbf{验收。} P1 独立写出根值、剪枝位置及边界；P2 写出接受比较式；P3 写明三种方法的关系和 MCTS 四步。核对时标出第一个算错的节点或漏掉的条件，反馈可直接发题号、步骤或手写照片。
+
+\clearpage
+\section{答案与解析}
+\subsection{热身与填步、变式}
+\textbf{H1.} 展开 A 后保留 B，加入 C、G。三点的 $g$ 分别是 2、3、9，$f$ 分别是 6、4、9。Dijkstra 取 B，A* 取 C。
+
+\textbf{H2.} 邻接表扫 $2\times3=6$ 项，邻接矩阵扫 $5\times5=25$ 格。每个顶点各扫一整行。
+
+\textbf{A1.} 得到 C。原图有 C → G，所以 C 是 G 的前驱。
+
+\textbf{A2.} 正向为 A、B，反向为 B、C。交点 B，路径 S → B → G 两条边。原图没有 S → G，因此已最短。
+
+\textbf{B1.} 因为 $0.70>0.607$，拒绝，仍在 B。
+
+\textbf{B2.} 概率降为 $e^{-1/0.5}=e^{-2}\approx0.135$。随机数 0.50 超过该值，拒绝。允许 B → D 时，D 的 9 高于 B 的 5，也是所有邻居中最高的分数，因此爬山选择 D。
+
+\textbf{C1.} B 的值为 $\min(3,9)=3$，根值为 $\max(5,3,6)=6$，走 C。
+
+\textbf{C2.} 三个 MIN 值变成 5、3、4，根值为 5，走 A。MIN 在 C 下能选择 4，使 C 的保证值低于 A。
+
+\textbf{D1.} $\beta=\min(+\infty,3)=3$。因 $\alpha=5\ge3=\beta$，跳过 B 的第二个叶子 9。
+
+\textbf{D2.} C 先读 6 得 $\beta=6$，此时根 $\alpha=-\infty$，继续读 8，取回 6，根更新 $\alpha=6$。A 先读 5 得 $\beta=5\le6$，剪去 7。B 先读 3 得 $\beta=3\le6$，剪去 9。根 $\alpha$ 保持 6，最佳着法仍为 C。共读四片叶子。
+
+\clearpage
+\subsection{混合题答案}
+\textbf{P1.} 完整回推 L、M、R 为 4、2、4，根值 4，L 和 R 并列。剪枝时先完整读 L 的 3 片叶，根 $\alpha=4$。M 读 7 时 $\beta=7>4$，读 2 时 $\beta=2\le4$，跳过 9。R 读 4 得 $\beta=4\le4$，跳过 5 和 10，共读 $3+2+1=6$ 片。截断时只知道 R 的真实值至多为 4，若要确认是否达到 4，仍须核验剩余叶值都至少为 4。
+
+\textbf{P2.} 爬山停在 X，因为唯一邻居 Y 更低。退火接受 Y，因为 $0.30<e^{-1}\approx0.368$。提议 Z 时评分升高，直接接受。一个子代取前者前两位和后者后两位，得到 1001，把末位翻转得 1000。
+
+\textbf{P3.} 极小极大完整回推给定树。Alpha–Beta 省去部分叶子，根值仍相同。MCTS 重复选择、扩展、模拟、回传，用样本统计选择着法。此次回传后访问次数为 4，累计回报为 $2+1=3$，平均回报为 $3/4$。
+
+\subsection{闭卷回忆}
+写出有向图目标侧沿哪个方向扩展、降分时的退火接受概率、MIN 节点何时可以剪去其余孩子。用原例解释为什么改变着法顺序会改变访问叶子数。
+
+\end{document}
