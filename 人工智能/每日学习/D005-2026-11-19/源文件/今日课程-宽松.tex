@@ -22,7 +22,7 @@ subsection={format=\large\bfseries\sffamily,beforeskip=1em,afterskip=.45em}}
 \thispagestyle{empty}
 \noindent{\sffamily\footnotesize 每日课程}\hfill{\sffamily\footnotesize 学习导图}\par
 \vspace{7mm}
-\noindent{\sffamily\fontsize{25}{30}\selectfont\bfseries 第 5 天 · 数据划分、泛化与聚类（宽松排版型）}\par
+\noindent{\sffamily\fontsize{25}{30}\selectfont\bfseries 第 5 天 · 泛化与聚类（宽松排版型）}\par
 \vspace{4mm}\noindent\rule{\linewidth}{.85pt}\par\vspace{6mm}
 \begin{center}
 \begin{tikzpicture}[x=1cm,y=1cm,>=stealth,every node/.style={font=\sffamily}]
@@ -127,9 +127,10 @@ subsection={format=\large\bfseries\sffamily,beforeskip=1em,afterskip=.45em}}
 }
 简单模型两边都高，先检查训练是否充分。若训练充分且特征有效，可以尝试提升表达能力。复杂模型把训练错误率压到 1\%，验证却升到 18\%，呈现过拟合迹象。可尝试简化模型、加强正则化或补充有代表性的训练样本。按验证错误率选中等模型，再用独立测试集评估。若验证集来自另一类场景，还需要检查分布差异。
 
+\clearpage
 \subsection{举一反三}
-\PracticeQuestion{B1}{同场景下，某模型训练错误率 2\%，验证错误率 20\%。已知合格验证错误率约为 8\%。补写一种可能的问题及一项处理办法。}{24}
-\PracticeQuestion{B2}{两边错误率改为 24\% 和 25\%。再算小题。回归的真实值是 2、5，预测值是 1、7。求 MSE。二分类中，同一个真实类别被模型甲、乙分别赋予 0.8、0.2 的概率。谁的交叉熵更小？最后说明改成两边误差都高后，诊断方向有何变化。}{34}
+\PracticeQuestion{B1}{同场景下，某模型训练错误率 2\%，验证错误率 20\%。已知合格验证错误率约为 8\%。补写一种可能的问题及一项处理办法。}{38}
+\PracticeQuestion{B2}{两边错误率改为 24\% 和 25\%。再算小题。回归的真实值是 2、5，预测值是 1、7。求 MSE。二分类中，同一个真实类别被模型甲、乙分别赋予 0.8、0.2 的概率。谁的交叉熵更小？最后说明改成两边误差都高后，诊断方向有何变化。}{52}
 \clearpage
 \section{单元 3 · 手算一轮 K 均值}
 聚类把相近样本分组。K 均值先定组数 $K$。每一轮先把每个点分给最近的旧中心，再用各组内点的均值更新中心。二维时每个坐标分别取均值。它降低或维持组内平方距离之和 $\sum_i\|x_i-c_{z_i}\|^2$，不同初始中心可能得到不同结果。特征尺度差得很大时，先考虑缩放。遇到等距按题意处理，空簇须另行处理，不能对空集合求均值。
