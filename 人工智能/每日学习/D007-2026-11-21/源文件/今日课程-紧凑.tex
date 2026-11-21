@@ -1,0 +1,193 @@
+\documentclass[UTF8,a4paper,11pt]{ctexart}
+\usepackage[margin=22mm,headheight=14pt,footskip=12mm]{geometry}
+\usepackage{amsmath,amssymb,array,longtable,booktabs,tikz,needspace,fancyhdr,hyperref}
+\usepackage{microtype}
+\hypersetup{colorlinks=false,pdfborder={0 0 0},pdfauthor={Good Learning},bookmarks=false}
+\newfontfamily\circledfont{Segoe UI Symbol}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\setlength{\LTleft}{0pt}\setlength{\LTright}{0pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{.65em}
+\linespread{1.18}
+\raggedbottom
+\setcounter{secnumdepth}{0}
+\ctexset{section={format=\Large\bfseries\sffamily,beforeskip=1.35em,afterskip=.65em},
+subsection={format=\large\bfseries\sffamily,beforeskip=1em,afterskip=.45em}}
+\newcommand{\chaptertitle}[1]{\Needspace{8\baselineskip}\noindent{\LARGE\bfseries\sffamily #1}\par\vspace{4mm}\hrule\vspace{6mm}}
+\newcommand{\CompactQuestion}[2]{\par\noindent\textbf{#1.}\ #2\par\vspace{.8em}}
+\newcommand{\PracticeQuestion}[3]{\par\Needspace{4\baselineskip}\noindent\begin{minipage}{\linewidth}\textbf{#1.}\ #2\par\noindent\rule{0pt}{#3mm}\par\end{minipage}\par}
+\newcommand{\CompactQuestionColon}[2]{\par\noindent\textbf{#1：}\ #2\par\vspace{.8em}}
+\newcommand{\PracticeQuestionColon}[3]{\par\Needspace{4\baselineskip}\noindent\begin{minipage}{\linewidth}\textbf{#1：}\ #2\par\noindent\rule{0pt}{#3mm}\par\end{minipage}\par}
+\pagestyle{fancy}\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}
+\begin{document}
+\thispagestyle{empty}
+\noindent{\sffamily\footnotesize 每日课程}\hfill{\sffamily\footnotesize 学习导图}\par
+\vspace{7mm}
+\noindent{\sffamily\fontsize{25}{30}\selectfont\bfseries 第 7 天 · 决策树与集成（紧凑排版型）}\par
+\vspace{4mm}\noindent\rule{\linewidth}{.85pt}\par\vspace{6mm}
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,every node/.style={font=\sffamily}]
+\path[use as bounding box] (-8.1,-18.7) rectangle (8.1,.4);
+\node[font=\sffamily\Large\bfseries] at (0,-.6) {分裂、叶预测与多树集成};
+\node[font=\sffamily\small,text=black!55] at (0,-1.25) {2026 年 11 月 21 日 · K09、K10};
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (-7.35,-2.35) {01};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (-6.199999999999999,-2.3200000000000003) {旧知复做};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (-6.199999999999999,-3.0700000000000003) {验证集选深度，测试集做终评\\[.25em]逐项代回预测值算平方误差};
+\draw[black!35,line width=.4pt] (-7.35,-5.050000000000001) -- (-0.2999999999999998,-5.050000000000001);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (0.85,-2.35) {02};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (2.0,-2.3200000000000003) {分类分裂};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (2.0,-3.0700000000000003) {按子节点人数加权熵\\[.25em]信息增益最大，叶取多数类};
+\draw[black!35,line width=.4pt] (0.85,-5.050000000000001) -- (7.8999999999999995,-5.050000000000001);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (0.85,-7.7) {03};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (2.0,-7.67) {回归分裂};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (2.0,-8.42) {叶取均值，逐项算平方误差\\[.25em]选择子节点平方误差和最小者};
+\draw[black!35,line width=.4pt] (0.85,-10.4) -- (7.8999999999999995,-10.4);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (-7.35,-7.7) {04};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (-6.199999999999999,-7.67) {随机森林};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (-6.199999999999999,-8.42) {每棵树抽样本，每个节点抽特征\\[.25em]分类投票，回归平均};
+\draw[black!35,line width=.4pt] (-7.35,-10.4) -- (-0.2999999999999998,-10.4);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (-7.35,-13.05) {05};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (-6.199999999999999,-13.020000000000001) {梯度提升};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (-6.199999999999999,-13.770000000000001) {平方损失下新树拟合残差\\[.25em]缩放后累加，再重算残差};
+\draw[black!35,line width=.4pt] (-7.35,-15.75) -- (-0.2999999999999998,-15.75);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (0.85,-13.05) {06};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (2.0,-13.020000000000001) {独立验收};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (2.0,-13.770000000000001) {列分组、准则值和叶预测\\[.25em]写出一轮残差拟合};
+\draw[black!35,line width=.4pt] (0.85,-15.75) -- (7.8999999999999995,-15.75);
+\draw[->,black!55,line width=.8pt] (-.12,-3.7) -- (.55,-3.7);
+\draw[->,black!55,line width=.8pt] (7.85,-5.45) -- (7.85,-7.2);
+\draw[->,black!55,line width=.8pt] (.52,-9.05) -- (-.15,-9.05);
+\draw[->,black!55,line width=.8pt] (-7.85,-10.8) -- (-7.85,-12.55);
+\draw[->,black!55,line width=.8pt] (-.12,-14.4) -- (.55,-14.4);
+\node[font=\sffamily\small,text=black!55] at (0,-18.1) {10 分钟热身 · 25 分钟例题 · 40 分钟练习 · 15 分钟订正};
+\end{tikzpicture}
+\end{center}
+\clearpage
+
+\chaptertitle{第 7 天 · 决策树与集成}
+\textbf{2026 年 11 月 21 日｜复习模式，保留基础讲解｜K09、K10｜90 分钟}
+
+\textbf{今日目标。} 比较两种候选分裂并给出叶预测，解释随机森林的两种随机性，手算平方损失下的一轮梯度提升。先独立作答，答案集中在最后。
+
+\textbf{时间。} 热身 10 分钟。读四个单元和例题 25 分钟。独做 A1 至 D2、P1 至 P2 共 40 分钟。订正和反馈 15 分钟。
+
+\textbf{前置。} 比例等于次数除以总数。均值等于总和除以个数。平方误差是每个实际值与它对应预测值之差的平方。所有题均为新编题，覆盖计划中的分裂计算与集成考点。概念核对自《第六章：集成学习》幻灯片 3、11、32 至 38、44、69、76、79 和 119。
+
+\section{热身}
+\subsection{举一反三}
+\CompactQuestion{H1}{三个树深度 1、2、5 的训练错误率分别为 22\%、12\%、2\%，验证错误率分别为 24\%、15\%、27\%。选哪个深度？哪个结果最像过拟合？什么时候用测试集？}
+\CompactQuestion{H2}{三个真实值为 $2,4,9$，对应预测为 $3,3,8$。先逐项写“真实值减预测值”，再算平方误差和 SSE 与均方误差 MSE。若所有预测改为 4，重新算 SSE。}
+\clearpage
+\section{单元 1 · 分类树用信息增益选分裂}
+内部节点按条件把样本分组，预测时沿同样的条件一直走到叶子。分类叶通常取组内出现次数最多的类。本课规定平票时选 0。连续特征可在相邻不同取值的中点设阈值，本课统一用 $x\le t$ 走左边。跳过导致空子节点的分裂。
+
+节点内各类比例为 $p_k$，熵 $H=-\sum_k p_k\log_2 p_k$，约定 $0\log_2 0=0$。纯节点熵为 0，二分类各半时为 1。子节点加权熵和信息增益为
+
+\[H_{\text{分裂后}}=\frac{n_L}{n}H_L+\frac{n_R}{n}H_R,\qquad IG=H_{\text{父}}-H_{\text{分裂后}}.\]
+同一父节点上，最大信息增益对应最小加权熵。深度限制可以提前停止分裂，剪枝可以把已长出的子树折回叶子。
+
+\subsection{例题 · 比较两个阈值}
+$x=1,2,3,4,5,6$，标签依次为 $(0,0,1,0,1,1)$。只比较 $t=2.5$ 和 $t=3.5$。可用 $H(1/4,3/4)\approx0.811$，$H(1/3,2/3)\approx0.918$。
+
+\begin{enumerate}
+\item 父节点各类 3 个，$H_{\text{父}}=1$。两个候选共用这个基准。
+\item $t=2.5$ 分为 $(0,0)$ 和 $(1,0,1,1)$。按各组样本数加权，得到 $(2/6)0+(4/6)0.811\approx0.541$，增益约 $0.459$。
+\item $t=3.5$ 分为 $(0,0,1)$ 与 $(0,1,1)$。两边的熵相同，加权后约 $0.918$，增益约 $0.082$。
+\item 选 $2.5$，两叶预测 $0,1$，$x=4$ 走右叶、预测 1。该样本标签实际是 0，说明选出的分裂仍有训练错误。两边权重之和应为 1。
+\end{enumerate}
+\subsection{举一反三}
+\CompactQuestion{A1}{沿用例题标签，新增候选 $t=4.5$。左、右熵约 $0.811,0$，父熵为 1。补出加权熵和增益，并与 $t=2.5$ 比较。}
+\CompactQuestion{A2}{保持 $x$，把标签换成 $(0,1,1,0,0,0)$，只比较 $t=1.5,3.5$。列左右标签、加权熵、增益与最佳分裂的叶预测。可用 $H(2/5,3/5)\approx0.971$。指出加权方法在哪一步沿用。}
+\clearpage
+\section{单元 2 · 回归树用平方误差选分裂}
+当标签是价格等连续数值，本课按平方误差分裂。习题若把分裂分数称为“信息增益”，先写清题目指定的准则。设一个节点中的所有样本共享预测 $c$，则 $\operatorname{SSE}=\sum_i(y_i-c)^2$。对 $c$ 求导并令其为零，得到 $c=\bar y$，这是平方误差最小的常数。叶预测取均值。
+
+候选分裂选子节点总 $\operatorname{SSE}_L+\operatorname{SSE}_R$ 最小的一项。用父节点样本数 $n$ 作分母，可得到按人数加权的子节点 MSE。直接把左右 MSE 各乘一半，仅在两组一样大时才与按人数加权一致。
+
+\subsection{例题 · 价格预测树}
+$x=1,2,3,4$，价格 $y=(2,4,8,10)$。比较 $t=1.5,2.5$，只长一层。
+
+\begin{enumerate}
+\item 父节点预测均值 6，原 SSE 是 $16+4+4+16=40$。
+\item $t=1.5$ 分出 $\{2\}$ 与 $\{4,8,10\}$，均值是 $2,22/3$。左 SSE 为 0，右 SSE 为 $(100+4+64)/9=56/3$，因为组内三个价格都要代回同一个右叶预测。
+\item $t=2.5$ 分出 $\{2,4\}$ 与 $\{8,10\}$，均值为 $3,9$。两组 SSE 各为 2，合计 4。
+\item 选 $2.5$，平方误差和减少 $40-4=36$。$x=2.5$ 走左叶、预测 3。加权 MSE 为 $4/4=1$，用整组样本数验算。
+\end{enumerate}
+\subsection{举一反三}
+\CompactQuestion{B1}{沿用例题，新增 $t=3.5$。左、右均值 $14/3,10$ 已知，补出左右 SSE 并判断它能否优于 $t=2.5$。}
+\CompactQuestion{B2}{价格改为 $(0,2,2,10)$，比较 $t=1.5,3.5$。写两个候选各自的组、均值、SSE 和胜出阈值，再算该分裂的加权 MSE。说明一个样本单独成叶时该叶的训练 SSE 为何是 0。}
+\clearpage
+\section{单元 3 · 随机森林汇总多棵树}
+袋装（Bagging）对训练数据进行有放回抽样，各树可并行训练。经典随机森林还有第二种随机性：每到一个分裂节点，重新从全部特征中抽候选子集，再在子集中选好的分裂。样本在每棵树开训前抽，候选特征在节点处抽。预测时，按本课的简单汇总规则，分类投票，回归平均。
+
+抽样和候选特征的变化可以降低树的错误相关性。多棵树总在相同样本上出错时，投票难以纠正这些错误。树可并行训练，不能据此推出预测是否正确在概率上相互独立。
+
+\subsection{例题 · 抽样和多数票}
+有训练样本 1、2、3、4，三个特征为颜色、重量、长度。另设一个概率题：对某样本，三棵树各以 $p=0.7$ 的概率独立判对，按多数票决策。
+
+\begin{enumerate}
+\item 有放回抽四次可以抽到 $(1,1,3,4)$。样本 1 出现两次，样本 2 是这棵树的袋外样本。
+\item 根节点抽到重量、长度就只比较这两个特征。进入下一节点时可以重新抽到颜色、长度。
+\item 至少两票对即判对。恰好两票有三种错票位置，概率是 $3p^2(1-p)$，三票全对的概率是 $p^3$。两种事件互斥，合计 $0.441+0.343=0.784$。
+\item 检验：$0.784$ 在 0 和 1 之间。若三棵树永远一起判对或一起判错，多数票的正确率就等于单树的正确率。
+\end{enumerate}
+\subsection{举一反三}
+\CompactQuestion{C1}{三棵树仍独立，每棵判对率改为 0.8。恰好两票判对的概率为 $3(0.8)^2(0.2)$。补出三票全对概率和多数票正确率。}
+\CompactQuestion{C2}{四条训练样本抽得 $(2,2,2,4)$。哪些样本没有被这棵树抽到？根节点抽到“长度、颜色”，它能在该节点选“重量”吗？若三棵树各自正确率均为 0.8 且总在相同样本上一同判对或判错，多数票正确率是多少？说明 C1 的哪条条件失效。}
+\clearpage
+\section{单元 4 · 平方损失下的梯度提升}
+平方损失取每个样本 $\ell(y,F)=\tfrac12(y-F)^2$ 时，对当前预测 $F$ 求负梯度得到 $r=y-F$。新回归树 $h$ 拟合这一列残差，再按 $F_{\text{新}}=F_{\text{旧}}+\eta h$ 更新预测。$r>0$ 表示旧预测偏小。其他损失一般要重新求负梯度。
+
+若题目要求以平方损失最优的常数预测起步，初始值取训练标签均值。若题目直接给定 $F_0$，使用给定值。每一轮训练新树之前都要用更新后的预测重算残差。
+
+\subsection{例题 · 一轮残差拟合}
+沿用回归树例题 $y=(2,4,8,10)$，初始预测均为 6。规定残差树按 $t=2.5$ 分两叶，学习率 $\eta=1/2$。
+
+\begin{enumerate}
+\item 逐个算 $y-F_0$，得 $(-4,-2,2,4)$。前两个目标比初始预测小，所以要往下修正。
+\item 左叶拟合均值 $(-4-2)/2=-3$，右叶为 $(2+4)/2=3$。现在树拟合的训练目标是残差。
+\item 新预测为 $(4.5,4.5,7.5,7.5)$，每个样本在旧预测上加上对应的半个叶值。
+\item 新残差为 $(-2.5,-0.5,0.5,2.5)$，新 SSE 为 $13$，低于原来的 $40$。第二轮将用这组新残差。
+\end{enumerate}
+\subsection{举一反三}
+\CompactQuestion{D1}{沿用例题的旧预测和已拟合的两叶 $-3,3$，改 $\eta=1$。补出四个新预测与新残差，再算新 SSE。}
+\CompactQuestion{D2}{标签改为 $(0,2,2,10)$，给定 $F_0=0$ 和 $\eta=1/2$，残差树固定在 $t=3.5$ 分裂。算残差、两叶值、四个新预测和新 SSE。指出哪些条件不同于例题。}
+\section{独立练习}
+\CompactQuestion{P1}{$x=(1,2,3,4)$，四套房的价格为 $(2,2,8,8)$。任务甲预测是否为高价房，价格至少 5 归高价类 1，否则为 0。任务乙直接预测价格。分别用熵增益和 SSE 比较 $t=1.5,2.5$ 并给出胜出分裂的两叶输出。可用 $H(1/3,2/3)\approx0.918$。若尝试再加深树，应在哪个数据集上选树深度？}
+\CompactQuestion{P2}{两棵等权随机森林回归树对三个样本分别输出 $(2,4,8)$ 和 $(4,6,10)$。先算森林的预测。换用平方损失的梯度提升，真实值为 $(3,5,9)$，给定当前预测 $F=(3,3,3)$ 与 $\eta=1/2$。新残差树把前两点分到一叶、最后一点分到另一叶。算残差、叶值、新预测与新 SSE，并用一句话说明两种方法的训练与汇总区别。}
+\clearpage
+\section{答案与解析}
+\subsection{热身}
+\textbf{H1.} 选深度 2，验证错误率 15\% 最低。深度 5 的训练错误率更低，验证错误率却升到 27\%，最像过拟合。训练集拟合模型，验证集比较深度，选定并锁定方案后，用测试集做最终评估。
+
+\textbf{H2.} 残差 $(-1,1,1)$，SSE 为 $1+1+1=3$，MSE 为 $3/3=1$。全预测 4 时，残差 $(-2,0,5)$，SSE 为 $4+0+25=29$。每次都按当次预测重新代入。
+
+\subsection{分类树与回归树}
+\textbf{A1.} 两边样本数为 4、2，所以加权熵约 $(4/6)0.811+(2/6)0=0.541$，增益约 0.459。两个阈值并列。若必须选一项，可先约定取较小阈值。
+
+\textbf{A2.} 父节点有 2 个 1 和 4 个 0，熵约 0.918。$t=1.5$ 分为 $(0)$ 与 $(1,1,0,0,0)$，加权熵约 $(1/6)0+(5/6)0.971=0.809$，增益约 0.109。$t=3.5$ 分为 $(0,1,1)$ 与 $(0,0,0)$，加权熵约 $(3/6)0.918+(3/6)0=0.459$，增益约 0.459。选 $3.5$，叶预测 1、0。仍按子节点人数占父节点人数的比例加权。
+
+\textbf{B1.} 左组 $\{2,4,8\}$，平方误差和为 $[(2-14/3)^2+(4-14/3)^2+(8-14/3)^2]=56/3$。右组 $\{10\}$ 的 SSE 为 0。总 SSE 大于 4，保留 $2.5$。
+
+\textbf{B2.} 当 $t=1.5$ 时，左 $\{0\}$，均值 0、SSE 为 0。右 $\{2,2,10\}$，均值 $14/3$，SSE 为 $(64+64+256)/9=128/3$。当 $t=3.5$ 时，左 $\{0,2,2\}$，均值 $4/3$，SSE 为 $(16+4+4)/9=8/3$。右 $\{10\}$，均值 10、SSE 为 0。选 $3.5$，加权 MSE 为 $(8/3)/4=2/3$。单样本叶的均值等于自身，所以训练误差为 0。
+
+\subsection{随机森林与梯度提升}
+\textbf{C1.} 三票全对为 $0.8^3=0.512$。恰好两票对为 $0.384$，两项相加得到 $0.896$。相乘用了独立条件，系数 3 来自三种错票位置。
+
+\textbf{C2.} 样本 1、3 没被抽到。重量不在该节点的候选集中，该节点只能从长度和颜色中选分裂。多数票正确率是 0.8，因为三票总是相同。投票正确性独立的假设失效，不能用 C1 的乘法。
+
+\textbf{D1.} 新预测 $(3,3,9,9)$。逐个用真实值减新预测，得 $(-1,1,-1,1)$，SSE 为 4。这里根据题意保留旧的叶值，只调整这棵新树贡献的倍数。
+
+\textbf{D2.} 起始残差 $(0,2,2,10)$，因为旧预测全为 0。左叶拟合均值 $4/3$，右叶拟合 10。乘 $1/2$ 后加到旧预测得到 $(2/3,2/3,2/3,5)$。再逐项代回真实标签，SSE 为 $(4+16+16)/9+25=29$。标签、初始值和分裂阈值发生了变化，学习率仍为 $1/2$。
+
+\clearpage
+\subsection{混合题答案}
+\textbf{P1.} 分类标签 $(0,0,1,1)$，父熵为 1。$t=1.5$ 的左右标签为 $(0)$ 与 $(0,1,1)$，加权熵约 $0.689$，增益约 $0.311$。$t=2.5$ 两叶均纯，增益为 1，叶输出 0、1。回归时 $t=1.5$ 左均值 2、SSE 为 0，右均值 6、SSE 为 $16+4+4=24$。$t=2.5$ 的两组均值为 2、8，总 SSE 为 0。两问都选 $2.5$。比较树深度时使用验证集。
+
+\textbf{P2.} 随机森林逐点平均得 $(3,5,9)$。提升树的残差为 $(0,2,6)$，左、右叶值为 1、6。加上半个叶值后，新预测为 $(3.5,3.5,6)$，新残差 $(-0.5,1.5,3)$，SSE 为 $0.25+2.25+9=11.5$。随机森林各树可并行训练，回归时取均值。梯度提升顺序训练，每轮把缩放后的新树加到当前模型。
+
+\section{订正与反馈}
+合上答案后，重写 A2、B2 的两个候选及叶值，口述随机森林的两种随机性，再写 D2 的残差、叶值、新预测。会检查分组、权重和残差方向，就达到了今天的验收要求。
+
+给我发 H1、A2、B2、C2、D2 的关键步骤或练习照片，并标出哪题看了提示。课后用一句话记下最容易写错的一步。最先核对的是验证集的用途、分裂后权重和 GBDT 的残差符号。
+
+\end{document}
