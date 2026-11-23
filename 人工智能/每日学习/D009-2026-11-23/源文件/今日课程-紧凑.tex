@@ -1,0 +1,183 @@
+\documentclass[UTF8,a4paper,11pt]{ctexart}
+\usepackage[margin=22mm,headheight=14pt,footskip=12mm]{geometry}
+\usepackage{amsmath,amssymb,array,longtable,booktabs,tikz,needspace,fancyhdr,hyperref}
+\usepackage{microtype}
+\IfFontExistsTF{MiSans}{\setCJKmainfont[BoldFont=MiSans Bold]{MiSans}\setCJKsansfont[BoldFont=MiSans Bold]{MiSans}}{}
+\hypersetup{colorlinks=false,pdfborder={0 0 0},pdfauthor={Good Learning}}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\setlength{\LTleft}{0pt}\setlength{\LTright}{0pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{.65em}
+\linespread{1.18}
+\raggedbottom
+\setcounter{secnumdepth}{0}
+\ctexset{section={format=\Large\bfseries\sffamily,beforeskip=1.35em,afterskip=.65em},
+subsection={format=\large\bfseries\sffamily,beforeskip=1em,afterskip=.45em}}
+\newcommand{\chaptertitle}[1]{\Needspace{8\baselineskip}\noindent{\LARGE\bfseries\sffamily #1}\par\vspace{4mm}\hrule\vspace{6mm}}
+\newcommand{\CompactQuestion}[2]{\par\noindent\textbf{#1.}\ #2\par\vspace{.8em}}
+\newcommand{\PracticeQuestion}[3]{\par\Needspace{4\baselineskip}\noindent\begin{minipage}{\linewidth}\textbf{#1.}\ #2\par\noindent\rule{0pt}{#3mm}\par\end{minipage}\par}
+\newcommand{\CompactQuestionColon}[2]{\par\noindent\textbf{#1：}\ #2\par\vspace{.8em}}
+\newcommand{\PracticeQuestionColon}[3]{\par\Needspace{4\baselineskip}\noindent\begin{minipage}{\linewidth}\textbf{#1：}\ #2\par\noindent\rule{0pt}{#3mm}\par\end{minipage}\par}
+\pagestyle{fancy}\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}
+\begin{document}
+\thispagestyle{empty}
+\noindent{\sffamily\footnotesize 每日课程}\hfill{\sffamily\footnotesize 学习导图}\par
+\vspace{7mm}
+\noindent{\sffamily\fontsize{20}{25}\selectfont\bfseries 第 9 天 · 激活函数与前向传播（紧凑排版型）}\par
+\vspace{4mm}\noindent\rule{\linewidth}{.85pt}\par\vspace{6mm}
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,every node/.style={font=\sffamily}]
+\path[use as bounding box] (-8.1,-18.7) rectangle (8.1,.4);
+\node[font=\sffamily\Large\bfseries] at (0,-.6) {一组输入怎样变成预测};
+\node[font=\sffamily\small,text=black!55] at (0,-1.25) {原定 11 月 23 日 · 11 月 24 日补学};
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (-7.35,-2.35) {01};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (-6.199999999999999,-2.3200000000000003) {输入};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (-6.199999999999999,-3.0700000000000003) {把输入特征写成列向量\\[.25em]行数等于输入特征数};
+\draw[black!35,line width=.4pt] (-7.35,-5.050000000000001) -- (-0.2999999999999998,-5.050000000000001);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (0.85,-2.35) {02};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (2.0,-2.3200000000000003) {权重与偏置};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (2.0,-3.0700000000000003) {每个神经元对应权重矩阵的一行\\[.25em]每行与输入做点积，再加偏置};
+\draw[black!35,line width=.4pt] (0.85,-5.050000000000001) -- (7.8999999999999995,-5.050000000000001);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (0.85,-7.7) {03};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (2.0,-7.67) {隐藏层的激活前数值};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (2.0,-8.42) {每个神经元算出一个数\\[.25em]这些数排成列向量};
+\draw[black!35,line width=.4pt] (0.85,-10.4) -- (7.8999999999999995,-10.4);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (-7.35,-7.7) {04};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (-6.199999999999999,-7.67) {ReLU};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (-6.199999999999999,-8.42) {分别处理向量的每一项\\[.25em]负数变成零，正数保留};
+\draw[black!35,line width=.4pt] (-7.35,-10.4) -- (-0.2999999999999998,-10.4);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (-7.35,-13.05) {05};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (-6.199999999999999,-13.020000000000001) {输出层};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (-6.199999999999999,-13.770000000000001) {把隐藏层激活后的向量送入下一层\\[.25em]按行再算一次加权和与偏置};
+\draw[black!35,line width=.4pt] (-7.35,-15.75) -- (-0.2999999999999998,-15.75);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (0.85,-13.05) {06};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (2.0,-13.020000000000001) {最终预测};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (2.0,-13.770000000000001) {线性输出保留原值\\[.25em]互斥多分类可用 Softmax 转为概率};
+\draw[black!35,line width=.4pt] (0.85,-15.75) -- (7.8999999999999995,-15.75);
+\draw[->,black!55,line width=.8pt] (-.12,-3.7) -- (.55,-3.7);
+\draw[->,black!55,line width=.8pt] (7.85,-5.45) -- (7.85,-7.2);
+\draw[->,black!55,line width=.8pt] (.52,-9.05) -- (-.15,-9.05);
+\draw[->,black!55,line width=.8pt] (-7.85,-10.8) -- (-7.85,-12.55);
+\draw[->,black!55,line width=.8pt] (-.12,-14.4) -- (.55,-14.4);
+\node[font=\sffamily\small,text=black!55] at (0,-18.1) {10 分钟热身 · 25 分钟讲解 · 40 分钟练习 · 15 分钟订正};
+\end{tikzpicture}
+\end{center}
+\clearpage
+
+\chaptertitle{第 9 天 · 激活函数与前向传播}
+\textbf{原计划 2026 年 11 月 23 日｜2026 年 11 月 24 日补学｜K08、K11｜90 分钟}
+
+今天练习给一张小型神经网络逐层算数。结束时，你要能独立写出每层输入和输出的形状，以及 ReLU 前后的数值。只需会带负号的四则运算、向量点积和二次式求导。题中用到的指数近似值会给出。
+
+\section{90 分钟安排}
+\begin{itemize}
+\item 10 分钟 · 先做 H1，分别写当前梯度、乘学习率后的量和更新后的参数。
+\item 25 分钟 · 阅读三个单元。遮住例题下一步，试着先写，再做各单元的填步题和变式。
+\item 40 分钟 · 做 F1–F4 和两道完整计算题 M1、M2。建议填空用 8 分钟，计算各用 16 分钟。
+\item 15 分钟 · 翻到答案页，对照每个中间值与形状，再闭卷重写自己出错的那一步。
+\end{itemize}
+热身来自错题本第 2 条的「再次复做」，原为新编题。其余例题和练习均为新编。本地材料只保留了原计划中的题号，F1–F4、M1–M2 分别覆盖该计划安排的填空和计算考点。
+
+\subsection{举一反三 · 先做热身}
+\CompactQuestion{H1}{$J(w)=(w-1)^2$，当前 $w=3$，学习率 $\eta=1/8$。请分三行写出当前导数 $J'(3)$、乘学习率后的量 $\eta J'(3)$、更新后的参数 $w_{\rm new}=3-\eta J'(3)$。写完后检查新参数是否更接近 1。}
+\clearpage
+\section{单元 1 · 一个神经元怎么算}
+把每个输入乘上对应权重，加在一起，再加偏置。这个结果叫激活前的值，记作 $z$。最后将 $z$ 交给激活函数，得到输出 $a$。
+
+\[z=w_1x_1+\cdots+w_nx_n+b,\qquad a=f(z).\]
+经典感知机常用阶跃函数做二分类。采用本课约定，$z\ge 0$ 时输出 1，$z<0$ 时输出 0。题目如果另定 $z=0$ 的规则，按题目算。ReLU 用 $f(z)=\max(0,z)$，保留正数，把负数变成零，零也输出零。
+
+\subsection{完整例题 · 同一个神经元，两种输出}
+输入 $x=(2,1)^\top$，权重 $w=(2,-1)^\top$，偏置 $b=-2$。求 $z$，以及阶跃和 ReLU 各自的输出。
+
+\begin{enumerate}
+\item 按位置相乘再相加，得 $w^\top x=2\cdot2+(-1)\cdot1=3$。矩阵形状 $(1\times2)(2\times1)$ 相乘后得到 $1\times1$。
+\item 加偏置，得 $z=3-2=1$。函数判断用的是加完偏置之后的数。
+\item 阶跃输出 1，因为 $z\ge0$。ReLU 输出 $\max(0,1)=1$。这两个结果在本例相同。验算时把偏置改为 $0$，$z=3$，此时阶跃输出 1，ReLU 输出 3。
+\end{enumerate}
+\subsection{举一反三}
+\CompactQuestion{A1}{沿用例题的输入和权重，把偏置换成 $1$。已知 $z=4$，补出 ReLU 输出。}
+\CompactQuestion{A2}{沿用例题的输入和权重。分别把偏置改成 $-3$ 和 $-4$，求两种激活的输出。指出哪个值需要检查阶跃函数在零点的约定。}
+\clearpage
+\section{单元 2 · 多个神经元怎样连成两层}
+本课把输入写成列向量。每个神经元占权重矩阵的一行，因此一层有 $m$ 个神经元、接收 $n$ 个输入时，$W$ 的形状是 $m\times n$，列向量 $b$、$z=Wx+b$ 和 $a=f(z)$ 的形状都是 $m\times1$。写乘法时对齐中间的 $n$。ReLU 对 $z$ 的每个分量分别计算。上一层的激活输出是下一层的输入。
+
+\subsection{完整例题 · 两个隐藏神经元，一个线性输出}
+输入 $x=(2,1)^\top$。第一层的两行权重是 $(1,-1)$ 和 $(-2,1)$，偏置 $b^{(1)}=(0,1)^\top$，用 ReLU。第二层权重为 $(3,2)$，偏置为 $-1$，输出层采用恒等函数 $f(z)=z$。
+
+\begin{enumerate}
+\item 第一层有两个输入和两个输出。$W^{(1)}$ 为 $2\times2$，所以 $W^{(1)}x$ 为 $2\times1$。两行分别算 $2-1+0=1$ 和 $-4+1+1=-2$，得到 $z^{(1)}=(1,-2)^\top$。
+\item 对两项各算一次 ReLU，得到 $a^{(1)}=(1,0)^\top$，形状仍是 $2\times1$。
+\item 第二层权重为 $1\times2$，乘 $a^{(1)}$ 后是 $1\times1$。加偏置得到 $z^{(2)}=3\cdot1+2\cdot0-1=2$，恒等函数输出 2。
+\item 检查第二个隐藏神经元。它的激活输出为零，所以在下一层贡献 $2\cdot0=0$。如果直接把 $-2$ 带到第二层，会少算一次 ReLU。
+\end{enumerate}
+\subsection{举一反三}
+\CompactQuestion{B1}{沿用例题，已知隐藏层输出 $a^{(1)}=(1,0)^\top$。把第二层偏置改成 $2$，补出最终输出。}
+\CompactQuestion{B2}{沿用两层的权重和偏置，将输入换成 $x=(0,2)^\top$。写两层的输入、权重、偏置和输出形状，求 $z^{(1)}$、$a^{(1)}$ 以及最终输出。指出哪一个隐藏神经元被置零。}
+\clearpage
+\section{单元 3 · 什么时候用 Sigmoid 和 Softmax}
+Sigmoid 把一个有限分数变成 $(0,1)$ 内的值。输入越大，输出越靠近 1。二分类常用一个 Sigmoid 输出表示正类概率，此时负类概率是 $1-p$。分数为 0 时，输出为 $1/2$。
+
+\[\sigma(z)=\frac{1}{1+\exp(-z)}.\]
+互斥多分类常用 Softmax。它把一组类别分数一起算成一组概率，分母是同一组分数的指数之和。如果题目中的类别可以同时成立，例如一张图既有猫又有狗，常对每个标签分别用 Sigmoid。
+
+\[p_i=\frac{\exp(z_i)}{\sum_j\exp(z_j)}.\]
+\subsection{完整例题 · 用三类分数求概率}
+输出层给出列向量 $z=(0,1,1)^\top$。三类互斥，取 $e\approx2.718$。求 Softmax 概率。
+
+\begin{enumerate}
+\item 三个指数为 $1,e,e$。第一项用的是 $e^0=1$。
+\item 分母取全部三项，得到 $1+2e$。三个概率共用这个分母，才能使概率和为 1。
+\item 得到 $p=(1,e,e)^\top/(1+2e)\approx(0.155,0.422,0.422)^\top$。输出仍是 $3\times1$。后两个分数相同，所以概率也相同。四舍五入前，概率和恰好为 1。
+\end{enumerate}
+\subsection{举一反三}
+\CompactQuestion{C1}{三类互斥，分数为 $(0,0,1)^\top$。已知三个指数为 $1,1,e$，补出第三类的 Softmax 概率。}
+\CompactQuestion{C2}{两个可同时成立的标签分数分别为 $0$ 和 $-1$。求各自的 Sigmoid 输出，取 $e\approx2.718$。这些输出的和需要等于 1 吗？说明这个条件和例题有什么不同。}
+\clearpage
+\section{独立练习}
+先完成四道填空，再独立手算 M1 和 M2。列向量可写成 $(\cdots)^\top$。小数保留三位，形状写成「行数 $\times$ 列数」。
+
+\CompactQuestion{F1}{单个神经元先算 $z=\underline{\qquad}$，再算 $a=\underline{\qquad}$。用 $w,x,b,f$ 表示。}
+\CompactQuestion{F2}{对 $(-3,0,2)^\top$ 逐项求 ReLU 后得到 $\underline{\qquad}$，输出形状为 $\underline{\qquad}$。}
+\CompactQuestion{F3}{一个全连接层接收 3 个输入，含 2 个神经元。按本课列向量约定，$W$ 和 $b$ 的形状分别为 $\underline{\qquad}$ 和 $\underline{\qquad}$。}
+\CompactQuestion{F4}{当一个类别分数为 0 时，单输出 Sigmoid 的结果为 $\underline{\qquad}$。一组互斥类别的 Softmax 概率之和为 $\underline{\qquad}$。}
+\CompactQuestion{M1}{输入 $x=(1,-2,3)^\top$。隐藏层权重的两行为 $(1,1,0)$ 和 $(0,-1,1)$，偏置 $(0,-1)^\top$，使用 ReLU。输出层权重为 $(-1,2)$，偏置为 $1$，使用恒等函数。标出每层输入、权重、偏置和输出形状，逐行求 $z^{(1)}$、$a^{(1)}$、$z^{(2)}$ 和最终输出。指出哪个隐藏输出被置零。}
+\CompactQuestion{M2}{输入 $x=(1,2)^\top$。隐藏层权重的两行为 $(1,0)$ 和 $(1,-1)$，偏置均为 0，使用 ReLU。三个互斥类别的输出层权重依次为 $(1,1)$、$(0,1)$、$(1,-1)$，偏置均为 0，使用 Softmax。标出每层输入、权重、偏置和输出形状，求两层激活前后的值，写出概率最大的类别，如有并列请写全。取 $e\approx2.718$。}
+\clearpage
+\section{核对答案与解析}
+先独立完成。核对时圈出第一个出错的中间量，再从那里重算。
+
+\subsection{热身与填步、变式}
+\textbf{H1.} $J'(w)=2(w-1)$，所以当前导数 $J'(3)=4$。乘学习率得到 $(1/8)\cdot4=0.5$。从旧参数减去这一项，得到 $w_{\rm new}=3-0.5=2.5$。旧参数距 1 为 2，新参数距 1 为 1.5。
+
+\textbf{A1.} $\max(0,4)=4$。正数经 ReLU 保持原值。
+
+\textbf{A2.} 加权和仍为 3。偏置为 $-3$ 时 $z=0$，按本课约定，阶跃输出 1，ReLU 输出 0。偏置为 $-4$ 时 $z=-1$，两种激活均输出 0。$z=0$ 是阶跃边界，换一个零点约定可能改变输出。
+
+\textbf{B1.} 激活输出保持 $(1,0)^\top$。第二层算 $3\cdot1+2\cdot0+2=5$，恒等函数保留 5。
+
+\textbf{B2.} 第一层输入 $2\times1$，权重 $2\times2$，偏置与输出均为 $2\times1$。两行分别得 $0-2+0=-2$、$0+2+1=3$，所以 $z^{(1)}=(-2,3)^\top$，$a^{(1)}=(0,3)^\top$。被置零的是第一个隐藏输出。第二层输入 $2\times1$，权重 $1\times2$，偏置与输出均为 $1\times1$。输出为 $3\cdot0+2\cdot3-1=5$。
+
+\textbf{C1.} $p_3=e/(2+e)\approx0.576$。分数为零的两类各给分母贡献 1。
+
+\textbf{C2.} $\sigma(0)=1/2$。$\sigma(-1)=1/(1+e)\approx0.269$。两个标签可以同时成立，各算各的概率，它们的和无须为 1。例题的三类互斥，共用同一个 Softmax 分母。
+
+\clearpage
+\subsection{混合题答案}
+\textbf{F1.} $z=w^\top x+b$，$a=f(z)$。先算加权和与偏置，再用激活函数。
+
+\textbf{F2.} $(0,0,2)^\top$，形状 $3\times1$。逐项计算保留原形状。
+
+\textbf{F3.} $W$ 为 $2\times3$，$b$ 为 $2\times1$。每个输出神经元对应一行和一个偏置。
+
+\textbf{F4.} $1/2$ 和 $1$。Sigmoid 的分母为 $1+e^0=2$。Softmax 的分母就是全部分子的和。
+
+\textbf{M1.} 第一层输入 $3\times1$，权重 $2\times3$，偏置与输出均为 $2\times1$。两行算出 $1-2+0+0=-1$、$0+2+3-1=4$。所以 $z^{(1)}=(-1,4)^\top$，$a^{(1)}=(0,4)^\top$。第一个隐藏输出被置零。第二层输入 $2\times1$，权重 $1\times2$，偏置与输出均为 $1\times1$。$z^{(2)}=(-1)\cdot0+2\cdot4+1=9$，恒等函数输出 9。
+
+\textbf{M2.} 第一层输入 $2\times1$，权重 $2\times2$，偏置与输出均为 $2\times1$。两行算出 $1+0=1$、$1-2=-1$。因此 $z^{(1)}=(1,-1)^\top$，$a^{(1)}=(1,0)^\top$。
+
+第二层输入 $2\times1$，权重 $3\times2$，偏置与输出均为 $3\times1$。逐行与 $(1,0)^\top$ 相乘得到 $z^{(2)}=(1,0,1)^\top$。$a^{(2)}=(e,1,e)^\top/(2e+1)\approx(0.422,0.155,0.422)^\top$。第 1 类和第 3 类并列，舍入前概率和为 1。
+
+\section{学完后自检}
+合上答案，给 M1 或 M2 每层写出输入和输出形状，并说出哪项 ReLU 输出变成了零。隔行写 $z$ 和 $a$，下一层用 $a$ 继续算。做完后发 H1 的三行算式，以及 M1、M2 的逐层结果或照片。哪一步用了提示也可以标出来。
+
+\end{document}
