@@ -1,0 +1,182 @@
+\documentclass[UTF8,a4paper,11pt]{ctexart}
+\usepackage[margin=22mm,headheight=14pt,footskip=12mm]{geometry}
+\usepackage{amsmath,amssymb,array,longtable,booktabs,tikz,needspace,fancyhdr,hyperref}
+\usepackage{microtype}
+\hypersetup{colorlinks=false,pdfborder={0 0 0},pdfauthor={Good Learning},bookmarks=false}
+\IfFontExistsTF{MiSans}{\setCJKmainfont[BoldFont=MiSans Bold]{MiSans}\setCJKsansfont[BoldFont=MiSans Bold]{MiSans}}{}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\setlength{\LTleft}{0pt}\setlength{\LTright}{0pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{.65em}
+\linespread{1.18}
+\raggedbottom
+\setcounter{secnumdepth}{0}
+\ctexset{section={format=\Large\bfseries\sffamily,beforeskip=1.35em,afterskip=.65em},
+subsection={format=\large\bfseries\sffamily,beforeskip=1em,afterskip=.45em}}
+\newcommand{\chaptertitle}[1]{\Needspace{8\baselineskip}\noindent{\LARGE\bfseries\sffamily #1}\par\vspace{4mm}\hrule\vspace{6mm}}
+\newcommand{\CompactQuestion}[2]{\par\noindent\textbf{#1.}\ #2\par\vspace{.8em}}
+\newcommand{\PracticeQuestion}[3]{\par\Needspace{4\baselineskip}\noindent\begin{minipage}{\linewidth}\textbf{#1.}\ #2\par\noindent\rule{0pt}{#3mm}\par\end{minipage}\par}
+\newcommand{\CompactQuestionColon}[2]{\par\noindent\textbf{#1：}\ #2\par\vspace{.8em}}
+\newcommand{\PracticeQuestionColon}[3]{\par\Needspace{4\baselineskip}\noindent\begin{minipage}{\linewidth}\textbf{#1：}\ #2\par\noindent\rule{0pt}{#3mm}\par\end{minipage}\par}
+\pagestyle{fancy}\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}
+\begin{document}
+\thispagestyle{empty}
+\noindent{\sffamily\footnotesize 每日课程}\hfill{\sffamily\footnotesize 学习导图 · 紧凑版}\par
+\vspace{7mm}
+\noindent{\sffamily\fontsize{25}{30}\selectfont\bfseries 第 13 天 · 语言模型、词向量与解码}\par
+\vspace{4mm}\noindent\rule{\linewidth}{.85pt}\par\vspace{6mm}
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,every node/.style={font=\sffamily}]
+\path[use as bounding box] (-8.1,-18.7) rectangle (8.1,.4);
+\node[font=\sffamily\Large\bfseries] at (0,-.6) {从一句话拆成词，到选出一句话};
+\node[font=\sffamily\small,text=black!55] at (0,-1.25) {按箭头读，每个方法都能回到一道计算题};
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (-7.35,-2.35) {01};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (-6.199999999999999,-2.3200000000000003) {分词};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (-6.199999999999999,-3.0700000000000003) {划定统计和预测的单位\\[.25em]词表给出可选择的单位};
+\draw[black!35,line width=.4pt] (-7.35,-5.050000000000001) -- (-0.2999999999999998,-5.050000000000001);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (0.85,-2.35) {02};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (2.0,-2.3200000000000003) {n-gram 概率};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (2.0,-3.0700000000000003) {只看最近的若干词\\[.25em]条件概率逐步相乘};
+\draw[black!35,line width=.4pt] (0.85,-5.050000000000001) -- (7.8999999999999995,-5.050000000000001);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (0.85,-7.7) {03};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (2.0,-7.67) {困惑度};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (2.0,-8.42) {先数实际评分几步\\[.25em]在相同计分规则下比较};
+\draw[black!35,line width=.4pt] (0.85,-10.4) -- (7.8999999999999995,-10.4);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (-7.35,-7.7) {04};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (-6.199999999999999,-7.67) {词嵌入};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (-6.199999999999999,-8.42) {CBOW 从周围词猜中心词\\[.25em]Skip-Gram 从中心词猜周围词};
+\draw[black!35,line width=.4pt] (-7.35,-10.4) -- (-0.2999999999999998,-10.4);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (-7.35,-13.05) {05};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (-6.199999999999999,-13.020000000000001) {余弦相似度};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (-6.199999999999999,-13.770000000000001) {内积除以两向量的长度乘积\\[.25em]比较方向，要求两向量非零};
+\draw[black!35,line width=.4pt] (-7.35,-15.75) -- (-0.2999999999999998,-15.75);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (0.85,-13.05) {06};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (2.0,-13.020000000000001) {束搜索};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (2.0,-13.770000000000001) {展开候选，按累计概率排序\\[.25em]每轮保留前 K 条};
+\draw[black!35,line width=.4pt] (0.85,-15.75) -- (7.8999999999999995,-15.75);
+\draw[->,black!55,line width=.8pt] (-.12,-3.7) -- (.55,-3.7);
+\draw[->,black!55,line width=.8pt] (7.85,-5.45) -- (7.85,-7.2);
+\draw[->,black!55,line width=.8pt] (.52,-9.05) -- (-.15,-9.05);
+\draw[->,black!55,line width=.8pt] (-7.85,-10.8) -- (-7.85,-12.55);
+\draw[->,black!55,line width=.8pt] (-.12,-14.4) -- (.55,-14.4);
+\node[font=\sffamily\small,text=black!55] at (0,-18.1) {10 分钟热身 · 25 分钟讲解 · 40 分钟独立练习 · 15 分钟订正};
+\end{tikzpicture}
+\end{center}
+\clearpage
+
+\chaptertitle{第 13 天 · 语言模型、词向量与解码}
+\textbf{2026 年 11 月 27 日｜K16–K17｜90 分钟}
+
+看到「我想喝」，你可能接「水」，也可能接「茶」。今天学三件事：给下一个词算概率，用向量比较词的方向，再从多条候选句子里选一条。
+
+\section{90 分钟安排}
+\begin{itemize}
+\item 10 分钟热身。用 6 分钟做 H1–H4，用 4 分钟回顾下面的两个工具。
+\item 25 分钟学新课。看三个完整例题，各补一道填步题 A1、B1、C1。
+\item 40 分钟独立做题。A2、B2、C2 各 8 分钟，M1 用 12 分钟，M2 用 4 分钟。
+\item 15 分钟核对后置答案，合上解析重做第一处出错的步骤。
+\end{itemize}
+H1–H3 来自错题本第 26–28 条的复做题，H4 是第 12 天 M1（3）补答。其余均为新编题，依据《人工智能复习资料.docx》第九章和备考计划，覆盖填空 14–15、27–28 与计算 8、25 的相关考点。
+
+\subsection{举一反三 · 热身}
+\CompactQuestion{H1}{上、下两行的横向插值分别为 4、12。从上往下走 $v=3/4$，两行各占多大权重？求最终值。}
+\CompactQuestion{H2}{四角依次为左上 0、右上 8、左下 4、右下 20。横向比例 $u=1$，纵向比例 $v=1/4$，哪些角权重为零？求插值。}
+\CompactQuestion{H3}{RPN 特征图 $2\times2$，每处 3 个 Anchor，每框 2 个分类分数。求分类通道数，再按「每处」和「每框」各算一次全图分数数目。}
+\CompactQuestion{H4}{一张图有两辆车。要给每辆车各自标出像素轮廓，该选检测、语义分割还是实例分割？另外两种各缺少什么？}
+\subsection{两个马上会用到的工具}
+\begin{itemize}
+\item 条件概率是「已知这件事，再问另一件事的概率」。10 次出现「喝」，其中 6 次后面接「水」，用频次估计得 $P(\text{水}\mid\text{喝})=6/10$。
+\item 内积要把同位置的分量相乘再相加。例如 $(1,2)$ 与 $(3,4)$ 的内积是 $1\cdot3+2\cdot4=11$。向量 $(a,b)$ 的长度是 $\sqrt{a^2+b^2}$。
+\end{itemize}
+\clearpage
+\section{单元 1 · 语言模型给词序列打分}
+分词把文字切成模型使用的单位，例如「我／喝／水」。词表是模型可以使用的单位集合。向量化再把这些单位变成数值表示。语料库是用于统计或训练的文本集合。本课按词分割，字符模型则按字或字符统计。
+
+语言模型为下一个词给出条件概率。把每一步条件概率乘起来，就是指定词序列的概率。这是链式法则。$n$-gram 用最近 $n-1$ 个单位近似整段历史，bigram（$n=2$）只看前一个词。不平滑时，把指定后继的次数除以该历史的总出现次数。历史从未出现时分母为零，需要题设给出平滑或回退规则。已见历史下，未出现的后继按零概率处理。
+
+对共评分 $T$ 步、概率乘积为 $p$ 的序列，困惑度是 $p^{-1/T}$。它衡量平均每步有多难猜。同一测试文本、分词与计分规则下，困惑度越低，实际词平均得到的概率越高。有一步概率为零时，困惑度为无穷大。
+
+\subsection{完整例题 · 算「喝 水」的概率}
+句首记作 $\langle s\rangle$，只评分「喝」和「水」，不计句尾。10 个句首有 4 个接「喝」，5 次「喝」有 4 次接「水」。
+
+\begin{enumerate}
+\item 按句首这个历史归一化，得 $P(\text{喝}\mid\langle s\rangle)=4/10$。
+\item bigram 到第二步只保留「喝」，得 $P(\text{水}\mid\text{喝})=4/5$。
+\item 两步必须连续发生，乘得 $p=0.4\cdot0.8=0.32$。评分两步，困惑度为 $0.32^{-1/2}\approx1.77$。乘积没有超过任一步的概率，可用来检查。
+\end{enumerate}
+\subsection{举一反三}
+\CompactQuestion{A1}{仍有 10 个句首，其中 4 个接「喝」。改成 5 次「喝」中只有 1 次接「水」。已知第一步仍为 0.4，补出第二步并写出两步乘积。}
+\CompactQuestion{A2}{改为 8 个句首有 4 个接「喝」，10 次「喝」有 5 次接「水」。先不计句尾，求概率和困惑度。再加入必须预测的句尾，给 $P(\langle /s\rangle\mid\text{水})=1/8$。重算两项，并指出与例题相比哪些地方变了。}
+\clearpage
+\section{单元 2 · 词向量把词变成可以比较的数}
+独热编码让每个词单独占一格。比如词表有 3 个词，第 2 个词可写成 $(0,1,0)$。分布式表示让多个分量一起表示一个词。词嵌入常指从训练中学到的稠密向量。维度太小可能装不下需要的区别，维度变大也会增加参数与计算，效果要在验证数据上判断。
+
+取「我 喝 水」，中心词是「喝」，窗口半径 1。CBOW 用「我、水」预测「喝」。Skip-Gram 用「喝」分别预测「我」和「水」。可以画箭头记方向。
+
+两条非零向量的余弦是内积除以两长度的乘积，范围为 $[-1,1]$。值越大，夹角越小。内积可当匹配分数，会受长度影响。不同词的独热向量没有重叠的 1，余弦为 0。零向量的长度为 0，余弦无定义。
+
+\subsection{完整例题 · 哪个词向量和「信息」方向更接近？}
+设「信息」为 $x=(1,0)$，「苹果」为 $y=(3,4)$，「数字化」为 $z=(1,1)$。
+
+\begin{enumerate}
+\item 算内积，$x\cdot y=3$，$x\cdot z=1$。仅看内积会选 $y$。
+\item 长度分别是 $1,5,\sqrt2$。为了比较方向，用长度去除规模的影响。
+\item 两组余弦为 $3/5=0.6$ 和 $1/\sqrt2\approx0.707$，所以 $z$ 更接近 $x$ 的方向。两值都在 $[-1,1]$ 内。把 $z$ 乘正数只改变长度，余弦保持不变。
+\end{enumerate}
+\subsection{举一反三}
+\CompactQuestion{B1}{保持 $x=(1,0)$，把 $y$ 换为 $(4,3)$。内积为 4，两个长度是 1 和 5。补出余弦，并与例题中 $x,z$ 的余弦比较。}
+\CompactQuestion{B2}{改为 $x=(1,1)$、$y=(2,0)$、$z=(3,3)$。分别算 $x$ 与另外两条的余弦。若把 $z$ 改成 $(0,0)$，对应的余弦还能算吗？再用「猫 吃 鱼」写出中心词为「吃」、窗口半径 1 时两种训练方法的预测箭头。}
+\clearpage
+\section{单元 3 · 解码时比较整条路径}
+语言理解常从输入中提取类别或意义，例如判断一句话是不是提问。语言生成要输出一串词，解码就是选择这一串词的过程。
+
+贪婪解码每次只选当前概率最大的词。束搜索每轮扩展还留在手里的所有前缀，再按累计概率一起排序，只留前 $K$ 条。本课所有候选固定长度，不计句尾，累计概率逐步相乘。实际也常把各步对数概率相加，排序相同。使用同样的评分、停止和同分规则时，束宽 1 与贪婪相同。有限束宽可能提前丢掉最终最好的前缀。如果题目容许不同长度或句尾，按题设的停止与评分规则处理。
+
+\subsection{完整例题 · 第一步领先，整句可能落后}
+只生成两个词。第一步 $P(A)=0.6,\ P(B)=0.4$。之后每条前缀都可接 $X,Y$。接在 $A$ 后的概率分别为 $0.55,0.45$，接在 $B$ 后分别为 $0.9,0.1$。
+
+\begin{enumerate}
+\item 束宽 1 先留 $A$，因为 $0.6>0.4$。下一步比较 $AX=0.33$、$AY=0.27$，输出 $AX$，已删掉的 $B$ 无法再扩展。
+\item 束宽 2 第一步留 $A,B$。第二步集中比较 $AX=0.33$、$AY=0.27$、$BX=0.36$、$BY=0.04$，保留 $BX,AX$，输出分数最高的 $BX$。
+\item 四条完整路径的概率加起来为 1。本题束宽 2 恰好搜索了全部四条路径。
+\end{enumerate}
+\subsection{举一反三}
+\CompactQuestion{C1}{沿用例题，只把 $B$ 后接 $X,Y$ 的概率改成 $0.8,0.2$。$AX$ 仍为 0.33。补出 $BX$ 的累计分数，并判断它能否超过 $AX$。}
+\CompactQuestion{C2}{第一步为 $A:0.45$、$B:0.35$、$C:0.20$。三条前缀接 $X,Y$ 的条件概率依次是 $(0.51,0.49)$、$(0.85,0.15)$、$(1,0)$。仍生成两个词。分别列出束宽 1、2 在每一步保留的路径及分数，写最终输出。和例题相比，多了哪项剪枝？}
+\clearpage
+\section{独立练习 · 混合回顾}
+\CompactQuestion{M1}{两个词组成的短语里，第一词「红」和「蓝」分别占 $0.55,0.45$。第二词只能为「球」「伞」。在 20 个以「红」开头的样本里有 12 个接「球」；在 20 个以「蓝」开头的样本里有 17 个接「球」。用频次求四个条件概率，再列四条路径的累计分数。写出贪婪与束宽 2 的输出，求「蓝 球」的困惑度。另设「球」向量为 $(2,1)$、「伞」为 $(1,2)$，求两者余弦。}
+\CompactQuestion{M2}{词表只有 3 个词，可以重复，两个位置都可从整张词表中选词，不计边界符。恰好 2 个词的组合有多少种？长度为 1 或 2 的有多少种？若两个不同词用独热编码，它们的余弦是多少？}
+\clearpage
+\section{答案与解析 · 先独立写完再核对}
+\subsection{热身}
+\textbf{H1.} 纵向比例是从上往下走的份额，所以上行乘 $1/4$、下行乘 $3/4$，得 $(1/4)4+(3/4)12=10$。
+
+\textbf{H2.} $u=1$ 让左列的权重为零，即左上、左下。两行横向插值分别是 8、20，纵向合并是 $(3/4)8+(1/4)20=11$。
+
+\textbf{H3.} 分类通道数是每处 $3\cdot2=6$。按位置数是 $4\cdot6=24$，按框数是 $(4\cdot3)\cdot2=24$。每处的 6 已含 3 个框。
+
+\textbf{H4.} 实例分割能为每辆车给出单独的像素掩码。检测给框，缺逐像素轮廓。语义分割能给出车辆类别的像素范围，缺每辆车独立的身份标签。
+
+\subsection{三个单元}
+\textbf{A1.} 已知历史是「喝」，所以分母是 5。第二步为 $1/5=0.2$，两步乘积为 $0.4\cdot0.2=0.08$。
+
+\textbf{A2.} 两步都取 $1/2$，所以 $p=1/4$，困惑度为 $(1/4)^{-1/2}=2$。加入句尾后 $p=(1/4)(1/8)=1/32$，现在评分 3 步，困惑度为 $32^{1/3}\approx3.17$。估计条件概率的方法相同，频数发生变化。加入句尾时，乘积和指数都要更新。
+
+\textbf{B1.} 余弦为 $4/(1\cdot5)=0.8$，高于 $1/\sqrt2\approx0.707$。比较的是除过长度的值。
+
+\textbf{B2.} $x$ 长 $\sqrt2$，$y$ 长 2，$z$ 长 $3\sqrt2$。两组内积为 2 和 6，余弦为 $2/(2\sqrt2)=1/\sqrt2$ 和 $6/6=1$。零向量作分母时无法计算。CBOW 的箭头为「猫、鱼」一起指向「吃」。Skip-Gram 是「吃」分别指向「猫」和「鱼」。
+
+\textbf{C1.} $BX=0.4\cdot0.8=0.32$，低于 $AX$ 的 0.33。换了条件概率，第一步的分数仍要乘进去。
+
+\textbf{C2.} 束宽 1 第一步留 $A:0.45$。扩展后 $AX=0.2295$、$AY=0.2205$，留 $AX$ 并输出它。束宽 2 第一步留 $A:0.45$、$B:0.35$。第二步新增 $BX=0.2975$、$BY=0.0525$，和 $AX,AY$ 一起排序后留 $BX:0.2975$、$AX:0.2295$，输出 $BX$。第三个首词 $C$ 被两种束宽都剪掉。
+
+\clearpage
+\subsection{混合题答案}
+\textbf{M1.} 每次用该历史下的样本总数 20 作分母。「红」后接「球」「伞」分别是 $12/20=0.6$、$8/20=0.4$，「蓝」后分别是 $17/20=0.85$、$3/20=0.15$。四条累计分数依次为红球 $0.33$、红伞 $0.22$、蓝球 $0.3825$、蓝伞 $0.0675$，总和为 1。贪婪先选「红」，输出红球。束宽 2 先留红、蓝，最终保留蓝球和红球，输出蓝球。蓝球的两步困惑度为 $1/\sqrt{0.3825}\approx1.62$。向量内积为 4，两边长度都是 $\sqrt5$，余弦为 $4/5=0.8$。
+
+\textbf{M2.} 两个位置各有 3 种选择，恰好两词为 $3^2=9$ 种。加上一词的 3 种得 $3+9=12$。不同独热向量的 1 在不同位置，内积为 0，两边长度都为 1，所以余弦为 0。
+
+\section{完成标准与反馈}
+合上答案，写出 M1 的概率表、B2 的两组余弦、C2 两轮各保留的候选，并口述 CBOW 和 Skip-Gram 的箭头。检查概率的分母、困惑度的步数、余弦的两个长度、束搜索的累计分数。把热身和独立练习的算式或照片发来，同时标注先看过答案的题号和实际用时。用作答来确定哪些步骤需要再练。
+
+\end{document}
