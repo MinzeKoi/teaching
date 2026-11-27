@@ -1,0 +1,173 @@
+\documentclass[UTF8,a4paper,11pt]{ctexart}
+\usepackage[margin=22mm,headheight=14pt,footskip=12mm]{geometry}
+\usepackage{amsmath,amssymb,array,longtable,booktabs,tikz,needspace,fancyhdr,hyperref}
+\usepackage{microtype}
+\hypersetup{colorlinks=false,pdfborder={0 0 0},pdfauthor={Good Learning},bookmarks=false}
+\IfFontExistsTF{MiSans}{\setCJKmainfont[BoldFont=MiSans Bold]{MiSans}\setCJKsansfont[BoldFont=MiSans Bold]{MiSans}}{}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\setlength{\LTleft}{0pt}\setlength{\LTright}{0pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{.65em}
+\linespread{1.18}
+\raggedbottom
+\setcounter{secnumdepth}{0}
+\ctexset{section={format=\Large\bfseries\sffamily,beforeskip=1.35em,afterskip=.65em},
+subsection={format=\large\bfseries\sffamily,beforeskip=1em,afterskip=.45em}}
+\newcommand{\chaptertitle}[1]{\Needspace{8\baselineskip}\noindent{\LARGE\bfseries\sffamily #1}\par\vspace{4mm}\hrule\vspace{6mm}}
+\newcommand{\CompactQuestion}[2]{\par\noindent\textbf{#1.}\ #2\par\vspace{.8em}}
+\newcommand{\PracticeQuestion}[3]{\par\Needspace{4\baselineskip}\noindent\begin{minipage}{\linewidth}\textbf{#1.}\ #2\par\noindent\rule{0pt}{#3mm}\par\end{minipage}\par}
+\newcommand{\CompactQuestionColon}[2]{\par\noindent\textbf{#1：}\ #2\par\vspace{.8em}}
+\newcommand{\PracticeQuestionColon}[3]{\par\Needspace{4\baselineskip}\noindent\begin{minipage}{\linewidth}\textbf{#1：}\ #2\par\noindent\rule{0pt}{#3mm}\par\end{minipage}\par}
+\pagestyle{fancy}\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}
+\begin{document}
+\thispagestyle{empty}
+\noindent{\sffamily\footnotesize 每日课程}\hfill{\sffamily\footnotesize 学习导图 · 宽松版}\par
+\vspace{7mm}
+\noindent{\sffamily\fontsize{25}{30}\selectfont\bfseries 第 14 天 · 注意力与位置编码}\par
+\vspace{4mm}\noindent\rule{\linewidth}{.85pt}\par\vspace{6mm}
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,every node/.style={font=\sffamily}]
+\path[use as bounding box] (-8.1,-18.7) rectangle (8.1,.4);
+\node[font=\sffamily\Large\bfseries] at (0,-.6) {一个查询怎样汇总其他位置的信息};
+\node[font=\sffamily\small,text=black!55] at (0,-1.25) {跟着箭头做一次，再换一个查询独立重算};
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (-7.35,-2.35) {01};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (-6.199999999999999,-2.3200000000000003) {准备词与位置};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (-6.199999999999999,-3.0700000000000003) {词向量加位置向量\\[.25em]每一行对应一个位置};
+\draw[black!35,line width=.4pt] (-7.35,-5.050000000000001) -- (-0.2999999999999998,-5.050000000000001);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (0.85,-2.35) {02};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (2.0,-2.3200000000000003) {投影出 Q、K、V};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (2.0,-3.0700000000000003) {自注意力读取同一序列\\[.25em]交叉注意力的键和值来自源句};
+\draw[black!35,line width=.4pt] (0.85,-5.050000000000001) -- (7.8999999999999995,-5.050000000000001);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (0.85,-7.7) {03};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (2.0,-7.67) {算匹配分数};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (2.0,-8.42) {查询逐个与键做点积\\[.25em]除以键维度的平方根};
+\draw[black!35,line width=.4pt] (0.85,-10.4) -- (7.8999999999999995,-10.4);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (-7.35,-7.7) {04};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (-6.199999999999999,-7.67) {掩码选可读位置};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (-6.199999999999999,-8.42) {因果掩码遮住未来\\[.25em]填充掩码遮住占位符};
+\draw[black!35,line width=.4pt] (-7.35,-10.4) -- (-0.2999999999999998,-10.4);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (-7.35,-13.05) {05};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (-6.199999999999999,-13.020000000000001) {归一化与加权};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (-6.199999999999999,-13.770000000000001) {沿每一行对键做 Softmax\\[.25em]用得到的权重汇总值向量};
+\draw[black!35,line width=.4pt] (-7.35,-15.75) -- (-0.2999999999999998,-15.75);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (0.85,-13.05) {06};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (2.0,-13.020000000000001) {拼接多头输出};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (2.0,-13.770000000000001) {各头使用自己的投影\\[.25em]沿特征维拼接同一位置的输出};
+\draw[black!35,line width=.4pt] (0.85,-15.75) -- (7.8999999999999995,-15.75);
+\draw[->,black!55,line width=.8pt] (-.12,-3.7) -- (.55,-3.7);
+\draw[->,black!55,line width=.8pt] (7.85,-5.45) -- (7.85,-7.2);
+\draw[->,black!55,line width=.8pt] (.52,-9.05) -- (-.15,-9.05);
+\draw[->,black!55,line width=.8pt] (-7.85,-10.8) -- (-7.85,-12.55);
+\draw[->,black!55,line width=.8pt] (-.12,-14.4) -- (.55,-14.4);
+\node[font=\sffamily\small,text=black!55] at (0,-18.1) {10 分钟热身 · 25 分钟讲解 · 40 分钟独立练习 · 15 分钟订正};
+\end{tikzpicture}
+\end{center}
+\clearpage
+
+\chaptertitle{第 14 天 · 注意力与位置编码}
+\textbf{2026 年 11 月 28 日｜K11、K17–K18｜90 分钟}
+
+读到「小猫追球，它跑得很快」，要理解「它」，得回头看句子里的词。注意力让当前位置给可读取的词分配权重，再把这些词携带的信息合起来。
+
+\section{90 分钟安排}
+\begin{itemize}
+\item 10 分钟做 H1–H4。前三题复做错题 29–31，最后一题复习余弦。
+\item 25 分钟看三个例题，各做一道填步题 A1、B1、C1。
+\item 40 分钟独立练习。A2、B2、C2 各 8 分钟，M1 用 12 分钟，M2 用 4 分钟。
+\item 15 分钟核对解析，合上答案重做第一处出错的步骤。
+\end{itemize}
+除 H1–H3 外均为新编题，依据《人工智能复习资料.docx》第九章，练习计算 10、27、填空 47–48 和简答 17 的相关考点。
+
+\subsection{举一反三 · 热身}
+\PracticeQuestion{H1}{两只同类的猫靠在一起。检测、语义分割和实例分割各会标出什么？}{22}
+\PracticeQuestion{H2}{12 个句首有 3 个接「喝」，8 次「喝」有 4 次接「水」，「水」后接句尾的概率为 $1/2$。分别求计入句尾前后的序列概率和困惑度。}{22}
+\PracticeQuestion{H3}{首词红、蓝的概率为 $0.6,0.4$，之后只能接球或伞。红后接球概率 $0.7$，蓝后接伞概率 $0.3$。列四条完整路径的分数，核对总和。}{22}
+\PracticeQuestion{H4}{求 $(1,1)$ 和 $(0,2)$ 的余弦。先算内积，再除以两个向量长度的乘积。}{22}
+\clearpage
+\section{单元 1 · 从输入向量算出一行注意力}
+每个词占一行。输入经三套线性映射变成查询 $Q$、键 $K$、值 $V$。查询表示当前位置要匹配什么，键用来计算匹配分数，值提供最后要汇总的信息。自注意力的三者都来自同一序列。本课忽略投影偏置。
+
+算第 $i$ 个查询时，先与每个键做点积，再除以 $\sqrt{d_k}$，其中 $d_k$ 是每个键的分量数，也是查询的分量数。然后对这一行可读的键做 Softmax。若分数是 $s_1,\ldots,s_n$，第 $j$ 项权重是 $e^{s_j}/\sum_\ell e^{s_\ell}$。权重和为 1。最后用这些权重对各行 $V$ 加权求和。算指数时，可以整行减去同一个数，权重保持相同。
+
+\subsection{完整例题 · 计算第二个词的输出}
+取 $X=\begin{pmatrix}1&2\\0&4\end{pmatrix}$，$W_Q=(0,1/2)^\top$，$W_K=(1,0)^\top$，$W_V=(0,1)^\top$。只算第 2 个查询，可读两个位置。
+
+\begin{enumerate}
+\item 投影后 $Q=(1,2)^\top$，$K=(1,0)^\top$，$V=(2,4)^\top$，三者都是 $2\times1$。这里每行只有一个分量，所以 $d_k=1$。
+\item 第二个查询是 2，与两键点积再除以 $\sqrt1$，得 $(2,0)$。权重为 $(e^2,1)/(e^2+1)\approx(0.881,0.119)$。
+\item 用权重乘对应的值，输出 $0.881(2)+0.119(4)\approx2.24$。权重更多落在值 2 上，输出也更靠近 2。每个查询的输出宽度等于值向量的宽度。
+\end{enumerate}
+\subsection{举一反三}
+\PracticeQuestion{A1}{沿用例题的键和值，改算第 1 个查询。已得分数 $(1,0)$，补权重与输出。}{23}
+\PracticeQuestion{A2}{第 2 行输入改为 $(2,4)$，其余照例题。写出 $Q,K,V$、第 2 个查询的分数、权重和输出。说出与例题相比哪个投影变了，并标出 $QK^\top$ 的形状。}{26}
+\clearpage
+\section{单元 2 · 编码器、解码器和遮住未来}
+Seq2Seq 把一个序列变成另一个序列，例如把中文句子译成英文。编码器读完整源句，产出源词表示。解码器每次预测一个目标词。解码器的自注意力读取目标侧前缀。交叉注意力用目标侧产生的 $Q$ 去匹配源句的 $K$，再汇总源句的 $V$。
+
+因果掩码让目标侧第 $i$ 个查询只读位置 $j\le i$。在 Softmax 前，把未来位置分数设为 $-\infty$，因此其权重为零，其余项仍加到 1。全行至少要有一个可读键。填充掩码按题设屏蔽补齐长度用的占位符，依据是该位置是否为填充。两种掩码可同时使用。已知完整源句时，解码器的交叉注意力通常可读所有有效源词。
+
+\subsection{完整例题 · 第 2 个位置只能读前两格}
+有 3 个目标位置。第 2 个查询缩放后的分数是 $(0,0,2)$，值向量只有一维，依次为 $2,6,10$。
+
+\begin{enumerate}
+\item 因果掩码准许列 1 和 2，把第 3 项变为 $-\infty$。
+\item 两个可读分数相同，Softmax 权重为 $(1/2,1/2,0)$。
+\item 输出是 $(1/2)2+(1/2)6=4$。第 3 项贡献为 0，检查前两项权重和为 1。
+\end{enumerate}
+\subsection{举一反三}
+\PracticeQuestion{B1}{第 2 个查询的新分数是 $(0,\ln3,2)$，其余沿用例题。已知未来位置权重为零，补整行权重和输出。}{24}
+\PracticeQuestion{B2}{改算第 3 个查询，分数 $(\ln2,0,\ln3)$，值仍为 $2,6,10$。位置 2 是填充，且使用因果掩码和填充掩码。写出遮住的列、权重和输出，说出遮住它的原因。若同一查询改做交叉注意力，$Q$ 和 $K,V$ 分别来自哪里？}{34}
+\clearpage
+\section{单元 3 · 多头的宽度和词的位置}
+每个注意力头有自己的投影，可以计算不同的匹配权重。常见等宽设置里，模型宽度为 $d_{\mathrm{model}}$、头数为 $h$，每头的 $d_k=d_v=d_{\mathrm{model}}/h$。按每个词占一行的约定，单头 $W_Q$ 的形状是 $d_{\mathrm{model}}\times d_k$。各头的输出沿特征维拼接，再经输出投影。拼接的是同一个词的各头输出，序列长度保持不变。遇到题设单独指定头宽时，按题设确定形状。
+
+绝对位置编码给每个位置一个与词向量同宽的向量，逐元素相加。同一个词出现在两个位置时，词向量相同，叠加的位置向量可以不同。固定正弦余弦编码按位置公式计算，例如位置 $p=0$ 时每对正弦和余弦分量是 $(0,1)$。可学习位置编码把位置向量存成可训练参数，能适配任务，但需要额外参数，超过位置表长度时需要扩展或其他处理。位置编码提供位置信息，因果掩码决定能读哪些位置。
+
+\subsection{完整例题 · 两头模型中的同一个词}
+设模型宽度为 4，等分成 2 个头。两个位置都有同一词，词向量 $e=(1,0,2,0)$。两行位置编码分别为 $(0,1,0,1)$ 和 $(1,0,0,1)$。
+
+\begin{enumerate}
+\item 每个头宽 $4/2=2$，所以单头 $W_Q$ 为 $4\times2$，把一个 4 维输入投影为一个 2 维查询。
+\item 两行输入分别是 $(1,1,2,1)$ 和 $(2,0,2,1)$。比较第一、第二分量可检查位置改变后输入不同。
+\item 每头输出有两行、每行宽 2。拼接后有两行、每行宽 4。模型仍处理两个位置。
+\end{enumerate}
+\subsection{举一反三}
+\PracticeQuestion{C1}{沿用例题，只把第 2 个位置编码改为 $(0,0,1,0)$。补第 2 行输入。头数与头宽各是多少？}{27}
+\PracticeQuestion{C2}{改成 3 个词、模型宽 8、4 个等宽头。写出每头 $d_k$、$W_Q$ 形状，以及单头和拼接输出的形状。如果可学习位置表只有第 0 至第 2 行，第 4 个词需要用哪一行？用了因果掩码就能解决这个位置表问题吗？}{35}
+\clearpage
+\section{独立练习 · 混合回顾}
+\PracticeQuestion{M1}{对 3 个目标位置做带因果掩码的自注意力，只算第 2 个查询。$X=\begin{pmatrix}1&0\\1&1\\0&2\end{pmatrix}$，$W_Q=\sqrt{2}I_2$，$W_K=(\ln2)I_2$，$W_V=(2,3)^\top$。$I_2$ 是 $2\times2$ 单位矩阵。写出 $q_2,K,V$ 及形状。算一行点积、缩放分数、掩码后的分数、Softmax 权重和输出。若取消掩码，输出变为多少？}{86}
+\PracticeQuestion{M2}{译文长 2、源句长 3，模型宽 256，4 个等宽头。求单个头的查询投影形状，以及该头交叉注意力分数矩阵的形状。若源句末尾是填充，屏蔽哪一列？若四个头用同样的宽度输出，拼接后形状是什么？}{34}
+\clearpage
+\section{答案与解析 · 先独立写完再核对}
+\subsection{热身}
+\textbf{H1.} 检测给每只猫一个框和「猫」类别。语义分割逐像素标类别。实例分割给两只猫各自的像素掩码。
+
+\textbf{H2.} 两步概率为 $(3/12)(4/8)=1/8$，困惑度 $\sqrt8\approx2.83$。加上句尾后概率为 $(1/8)(1/2)=1/16$，困惑度 $\sqrt[3]{16}\approx2.52$。
+
+\textbf{H3.} 红球 $0.6(0.7)=0.42$，红伞 $0.6(0.3)=0.18$，蓝球 $0.4(0.7)=0.28$，蓝伞 $0.4(0.3)=0.12$。相加得 1。
+
+\textbf{H4.} 内积为 2，长度分别为 $\sqrt2$ 和 2，余弦为 $2/(2\sqrt2)=1/\sqrt2$。
+
+\subsection{三个单元}
+\textbf{A1.} $e^1=e$，$e^0=1$，所以权重为 $(e,1)/(e+1)\approx(0.731,0.269)$。输出 $(2e+4)/(e+1)\approx2.54$。
+
+\textbf{A2.} 只有第二个键变为 2，故 $Q=(1,2)^\top$，$K=(1,2)^\top$，$V=(2,4)^\top$。第 2 行分数 $(2,4)$，减去 2 后是 $(0,2)$，权重约 $(0.119,0.881)$。输出约 $3.76$。全矩阵 $QK^\top$ 为 $2\times2$。
+
+\textbf{B1.} 两项指数为 1 和 3，权重为 $(1/4,3/4,0)$。加权输出 $(1/4)2+(3/4)6=5$。
+
+\textbf{B2.} 第 3 个查询在最后，因果掩码未遮住这三列。填充掩码遮住列 2。剩余指数为 2 和 3，权重是 $(2/5,0,3/5)$，输出 $2(2/5)+10(3/5)=6.8$。交叉注意力的 $Q$ 来自解码器目标侧，$K,V$ 来自编码器的源句表示。
+
+\textbf{C1.} $(1,0,2,0)+(0,0,1,0)=(1,0,3,0)$。仍有 2 个头，每头宽 2。
+
+\textbf{C2.} 每头宽 $8/4=2$，$W_Q$ 是 $8\times2$。单头输出为 $3\times2$，拼接为 $3\times8$。第 4 个词用位置 3，位置表需能提供第 3 行。因果掩码只管查询能读哪几列，位置表仍需扩展或改用其他位置表示。
+
+\clearpage
+\subsection{混合题答案}
+\textbf{M1.} $q_2=\sqrt2(1,1)$，形状为 $1\times2$。$K=(\ln2)X$ 为 $3\times2$，$V=(2,5,6)^\top$ 为 $3\times1$。点积是 $\sqrt2(\ln2,2\ln2,2\ln2)$，除以 $\sqrt2$ 后是 $(\ln2,2\ln2,2\ln2)$。先遮住第 3 列，得 $(\ln2,2\ln2,-\infty)$。指数为 $(2,4,0)$，权重 $(1/3,2/3,0)$，输出为 $(2+10)/3=4$。取消掩码后权重为 $(2,4,4)/10$，输出 $(4+20+24)/10=4.8$。
+
+\textbf{M2.} 每头宽 $256/4=64$，所以 $W_Q$ 是 $256\times64$。2 行目标查询各与 3 个源键匹配，分数矩阵为 $2\times3$。填充掩码遮住第 3 列。四头在特征维拼接，输出形状为 $2\times256$。
+
+\section{完成标准与反馈}
+合上答案重做 M1。写出投影、点积、缩放、掩码、归一化和加权，并给出每一步的形状。用 M2 检查分数矩阵的行和列分别对应谁。把算式或照片发来，并注明实际用时和哪些题先看过答案。
+
+\end{document}
