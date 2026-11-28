@@ -1,0 +1,157 @@
+\documentclass[UTF8,a4paper,11pt]{ctexart}
+\usepackage[margin=22mm,headheight=14pt,footskip=12mm]{geometry}
+\usepackage{amsmath,amssymb,array,longtable,booktabs,tikz,needspace,fancyhdr,hyperref}
+\usepackage{microtype}
+\hypersetup{colorlinks=false,pdfborder={0 0 0},pdfauthor={Good Learning}}
+\IfFontExistsTF{MiSans}{\setCJKmainfont[BoldFont=MiSans Bold]{MiSans}\setCJKsansfont[BoldFont=MiSans Bold]{MiSans}}{}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\setlength{\LTleft}{0pt}\setlength{\LTright}{0pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{.65em}
+\linespread{1.18}
+\raggedbottom
+\setcounter{secnumdepth}{0}
+\ctexset{section={format=\Large\bfseries\sffamily,beforeskip=1.35em,afterskip=.65em},
+subsection={format=\large\bfseries\sffamily,beforeskip=1em,afterskip=.45em}}
+\newcommand{\chaptertitle}[1]{\Needspace{8\baselineskip}\noindent{\LARGE\bfseries\sffamily #1}\par\vspace{4mm}\hrule\vspace{6mm}}
+\newcommand{\CompactQuestion}[2]{\par\noindent\textbf{#1.}\ #2\par\vspace{.8em}}
+\newcommand{\PracticeQuestion}[3]{\par\Needspace{4\baselineskip}\noindent\begin{minipage}{\linewidth}\textbf{#1.}\ #2\par\noindent\rule{0pt}{#3mm}\par\end{minipage}\par}
+\newcommand{\CompactQuestionColon}[2]{\par\noindent\textbf{#1：}\ #2\par\vspace{.8em}}
+\newcommand{\PracticeQuestionColon}[3]{\par\Needspace{4\baselineskip}\noindent\begin{minipage}{\linewidth}\textbf{#1：}\ #2\par\noindent\rule{0pt}{#3mm}\par\end{minipage}\par}
+\pagestyle{fancy}\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}
+\begin{document}
+\thispagestyle{empty}
+\noindent{\sffamily\footnotesize 每日课程}\hfill{\sffamily\footnotesize 学习导图}\par
+\vspace{7mm}
+\noindent{\sffamily\fontsize{25}{30}\selectfont\bfseries 第 16 天 · 马尔可夫链（宽松排版型）}\par
+\vspace{4mm}\noindent\rule{\linewidth}{.85pt}\par\vspace{6mm}
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,every node/.style={font=\sffamily}]
+\path[use as bounding box] (-8.1,-18.7) rectangle (8.1,.4);
+\node[font=\sffamily\Large\bfseries] at (0,-.6) {从状态转移到两步分布与稳态};
+\node[font=\sffamily\small,text=black!55] at (0,-1.25) {先固定状态顺序，再用同一顺序读行和列};
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (-7.35,-2.35) {01};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (-6.199999999999999,-2.3200000000000003) {判断转移条件};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (-6.199999999999999,-3.0700000000000003) {无后效性看是否还需要历史\\[.25em]时间齐次看各步规则是否相同};
+\draw[black!35,line width=.4pt] (-7.35,-5.050000000000001) -- (-0.2999999999999998,-5.050000000000001);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (0.85,-2.35) {02};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (2.0,-2.3200000000000003) {列转移矩阵};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (2.0,-3.0700000000000003) {行是出发，列是到达\\[.25em]每一行的概率和为 1};
+\draw[black!35,line width=.4pt] (0.85,-5.050000000000001) -- (7.8999999999999995,-5.050000000000001);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (0.85,-7.7) {03};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (2.0,-7.67) {算两步分布};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (2.0,-8.42) {用当前分布右乘本步矩阵\\[.25em]每条路径先乘，同一终点再加};
+\draw[black!35,line width=.4pt] (0.85,-10.4) -- (7.8999999999999995,-10.4);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (-7.35,-7.7) {04};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (-6.199999999999999,-7.67) {求稳态分布};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (-6.199999999999999,-8.42) {令走一步后的分布等于原分布\\[.25em]再加上概率和为 1};
+\draw[black!35,line width=.4pt] (-7.35,-10.4) -- (-0.2999999999999998,-10.4);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (-7.35,-13.05) {05};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (-6.199999999999999,-13.020000000000001) {找吸收状态};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (-6.199999999999999,-13.770000000000001) {留在自己的概率等于 1\\[.25em]概率全放在这里就是一组稳态};
+\draw[black!35,line width=.4pt] (-7.35,-15.75) -- (-0.2999999999999998,-15.75);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (0.85,-13.05) {06};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (2.0,-13.020000000000001) {检查是否收敛};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (2.0,-13.770000000000001) {每天互换仍有均匀稳态\\[.25em]从确定状态出发却会来回跳};
+\draw[black!35,line width=.4pt] (0.85,-15.75) -- (7.8999999999999995,-15.75);
+\draw[->,black!55,line width=.8pt] (-.12,-3.7) -- (.55,-3.7);
+\draw[->,black!55,line width=.8pt] (7.85,-5.45) -- (7.85,-7.2);
+\draw[->,black!55,line width=.8pt] (.52,-9.05) -- (-.15,-9.05);
+\draw[->,black!55,line width=.8pt] (-7.85,-10.8) -- (-7.85,-12.55);
+\draw[->,black!55,line width=.8pt] (-.12,-14.4) -- (.55,-14.4);
+\node[font=\sffamily\small,text=black!55] at (0,-18.1) {10 分钟热身 · 25 分钟学习 · 40 分钟练习 · 15 分钟订正};
+\end{tikzpicture}
+\end{center}
+\clearpage
+
+\chaptertitle{第 16 天 · 马尔可夫链}
+\textbf{2026 年 11 月 30 日｜K02、K19｜90 分钟}
+
+给你一张写着转移概率的图，你能把它变成矩阵，算两步后的概率，再找出一组走一步后仍保持原样的概率。
+
+\section{90 分钟安排}
+\begin{itemize}
+\item 10 分钟回顾概率、矩阵乘法和期望。做下面的热身。
+\item 25 分钟学两个单元。看完每一步，合上讲义，用自己的话说出为什么这样算。
+\item 40 分钟独立练习。A1–B2 共 15 分钟，M1、M2 共 25 分钟。先写状态顺序和中间结果。
+\item 15 分钟打开答案订正。标出第一处错步，合上答案重做该步。
+\end{itemize}
+全部练习为新编题，覆盖备考计划中计算 12–15 对应的马尔可夫链考点。
+
+\subsection{热身 · 概率和期望}
+晴、雨的概率分别是 $0.6$ 和 $0.4$，收益分别是 2 和 5。算概率和与期望。然后算行向量 $(0.6,0.4)$ 与列向量 $(0.8,0.5)^\top$ 的乘积。它也可以看成两个数的加权平均。
+
+\clearpage
+\section{单元 1 · 从转移图算两步概率}
+把天气简化成「晴」和「雨」两个状态。\textbf{无后效性}指给定今天的状态后，昨天及更早的天气不会改变明天的条件概率。\textbf{时间齐次}指同一个状态到同一个下一状态的概率在各步都一样。这是两项独立的条件。若周一晴到雨的概率为 $0.2$，周二为 $0.4$，只要给定当天状态和时刻就能确定下一步概率，仍可以有无后效性，但每一步需要用各自的矩阵。
+
+固定状态顺序，用行表示出发状态，列表示到达状态。每项都在 0 与 1 之间，每行加起来等于 1。用行向量 $p_t$ 记录第 $t$ 步处于各状态的概率。用本步矩阵乘在右边，即 $p_{t+1}=p_tP$。连续两步都用同一个矩阵时，$p_2=p_0P^2$。$P^2$ 是 $P$ 与自己做矩阵乘法，第 $i$ 行第 $j$ 列给出从 $i$ 出发走两步到 $j$ 的概率。
+
+\subsection{完整例题 · 今天晴，后天有多大概率下雨}
+箭头从出发状态指向到达状态，箭头上是一步概率。两步使用同样的规则。今天确定晴，求后天的分布。
+
+\[\begin{array}{ll}
+\text{晴}\xrightarrow{3/4}\text{晴} & \text{晴}\xrightarrow{1/4}\text{雨}\\
+\text{雨}\xrightarrow{1/2}\text{晴} & \text{雨}\xrightarrow{1/2}\text{雨}
+\end{array}\]
+\begin{enumerate}
+\item 按（晴，雨）排，得到 $P=\begin{pmatrix}3/4&1/4\\1/2&1/2\end{pmatrix}$ 和 $p_0=(1,0)$。今天确定晴，所以第一步直接取晴这一行，$p_1=(3/4,1/4)$。
+\item 后天雨有两条路。经晴的贡献为 $(3/4)(1/4)=3/16$，经雨的贡献为 $(1/4)(1/2)=2/16$。先乘出每条路的概率，再相加，得 $5/16$。
+\item 同理，后天晴的概率为 $(3/4)(3/4)+(1/4)(1/2)=11/16$。所以 $p_2=(11/16,5/16)$，两项均非负且和为 1。
+\end{enumerate}
+\subsection{举一反三}
+\PracticeQuestion{A1}{沿用例题的矩阵，今天确定下雨。已得 $p_1=(1/2,1/2)$ 和后天晴的概率 $5/8$。补上「经晴」和「经雨」对后天雨的贡献，再写出 $p_2$。}{23}
+\PracticeQuestion{A2}{今天确定下雨。第一步沿用例题矩阵，第二步仅将雨出发的一行改成 $(1/4,3/4)$。求 $p_1,p_2$，说明两步该按什么顺序乘矩阵，以及能否用第一步矩阵的平方。}{26}
+\clearpage
+\section{单元 2 · 找稳态，识别吸收}
+\textbf{稳态分布}是一组走一步后保持原样的概率。对行向量 $\pi$，写 $\pi P=\pi$，再加上各项非负、总和为 1。先按列写方程，再用概率总和求出数值。求完把结果乘回矩阵，检查能否回到原分布。
+
+\textbf{吸收状态}是进去后必定留在那里的状态。若 $P_{ii}=1$，状态 $i$ 的这一行其他项都为 0。把全部概率放在这个状态上，就得到一组稳态分布。
+
+\textbf{存在稳态与从某个起点收敛是两个问题。} 例如晴雨每天互换，$(1/2,1/2)$ 每步都保持原样。但从确定的晴天出发，分布会在 $(1,0)$ 与 $(0,1)$ 之间来回跳。
+
+\subsection{完整例题 · 解两状态的稳态}
+沿用（晴，雨）顺序。现在 $P=\begin{pmatrix}0.8&0.2\\0.4&0.6\end{pmatrix}$，求稳态。
+
+\begin{enumerate}
+\item 令 $\pi=(a,b)$。走一步后处于晴的概率是 $0.8a+0.4b$，所以 $a=0.8a+0.4b$。雨的方程为 $b=0.2a+0.6b$。化简两式都给 $a=2b$。
+\item 用 $a+b=1$ 得 $b=1/3$，$a=2/3$。也可把 $0.2a=0.4b$ 理解为从晴转到雨的概率份额，等于从雨转回晴的份额。
+\item 代回得 $\pi P=(2/3,1/3)=\pi$，两项非负且和为 1。两个状态都有离开的可能，所以都不是吸收状态。
+\end{enumerate}
+\subsection{举一反三}
+\PracticeQuestion{B1}{例题只把雨出发的一行改成 $(0.2,0.8)$。已写出 $a=0.8a+0.2b$，补出 $\pi$ 并用另一列检查。}{24}
+\PracticeQuestion{B2}{例题只把雨出发的一行改成 $(0,1)$。判断哪个状态吸收，写稳态方程和解。若今天确定为晴，再求两步后的分布，并解释两步后还可能看到晴的原因。}{34}
+\clearpage
+\section{独立练习 · 矩阵、两步与稳态}
+\PracticeQuestion{M1}{状态顺序为（A，B，C）。从 A 有两支箭头，分别以 $1/2$ 到 A 和 B。从 B 以 $1/4$ 到 A、$1/2$ 到 B、$1/4$ 到 C。从 C 以 1 留在 C。各步概率相同。从确定处于 B 开始，写出 $P,p_0,p_1,p_2$，检查矩阵每行和 $p_2$ 的概率和。另求从 A 出发两步到 C 的概率，写出经过的中间状态。指出吸收状态并给出一组稳态。}{40}
+\PracticeQuestion{M2}{状态按（晴，雨）排。晴到雨的概率为 $0.4$，雨到晴的概率为 $0.1$，每步规则相同。补全 $P$。若今天确定雨，算 $p_1,p_2$ 并检查两步分布的概率和。接着列方程求 $\pi$，代回核对。最后改成每天必定换天气，写出新稳态，说明从确定的雨天出发能否收敛到它。}{34}
+\clearpage
+\section{答案与解析 · 先独立作答}
+\subsection{热身与分步练习}
+\textbf{热身。} 概率和是 $0.6+0.4=1$。期望是 $0.6(2)+0.4(5)=3.2$。行乘列得 $0.6(0.8)+0.4(0.5)=0.68$。计算下一步某一状态的概率，也用这种逐项相乘再相加的办法。
+
+\textbf{A1.} 经晴对后天雨的贡献为 $(1/2)(1/4)=1/8$，经雨为 $(1/2)(1/2)=1/4$。加起来是 $3/8$，故 $p_2=(5/8,3/8)$。
+
+\textbf{A2.} 设第一、第二步矩阵为 $P_1,P_2$。$p_1=p_0P_1=(1/2,1/2)$。第二步的晴列是 $(3/4,1/4)^\top$，所以到晴的概率为 $3/8+1/8=1/2$，到雨的概率也为 $1/2$。因此 $p_2=p_0P_1P_2=(1/2,1/2)$。第二步的雨行已经改变，所以要在 $P_1$ 之后乘 $P_2$。
+
+\textbf{B1.} 晴的方程给 $0.2a=0.2b$，结合 $a+b=1$ 得 $\pi=(1/2,1/2)$。雨的列核对为 $0.2(1/2)+0.8(1/2)=1/2$。
+
+\textbf{B2.} 雨吸收。晴的方程为 $a=0.8a$，所以 $a=0$，由 $a+b=1$ 得 $\pi=(0,1)$。从确定的晴出发，$p_1=(0.8,0.2)$，两步后仍晴的唯一途径是两次都留在晴，概率 $0.8^2=0.64$，故 $p_2=(0.64,0.36)$。稳态告诉我们哪组概率会保持原样，两步计算告诉我们从指定起点走了两步后是什么分布。
+
+\clearpage
+\subsection{混合题答案}
+\textbf{M1.} 每一行按（A，B，C）填写，依次得到 $(1/2,1/2,0)$、$(1/4,1/2,1/4)$、$(0,0,1)$。三行的概率各自加起来都等于 1。$p_0=(0,1,0)$，所以 $p_1=(1/4,1/2,1/4)$。
+
+用 $p_1$ 依次乘三列。到 A 为 $1/8+1/8+0=1/4$。到 B 为 $1/8+1/4+0=3/8$。到 C 为 $0+1/8+1/4=3/8$。因此 $p_2=(1/4,3/8,3/8)$，概率和为 1。
+
+从 A 出发，两步到 C 只能经 B，概率为 $(1/2)(1/4)=1/8$。C 是吸收状态，$(0,0,1)$ 乘 $P$ 后仍是 $(0,0,1)$，所以是一组稳态。
+
+\textbf{M2.} 每行用 1 减去换天气的概率，得到 $P=\begin{pmatrix}0.6&0.4\\0.1&0.9\end{pmatrix}$。从雨开始，$p_1=(0.1,0.9)$。第二步到晴为 $0.1(0.6)+0.9(0.1)=0.15$，到雨为 $0.1(0.4)+0.9(0.9)=0.85$，所以 $p_2=(0.15,0.85)$，概率和为 1。
+
+设 $\pi=(a,b)$，晴的方程为 $a=0.6a+0.1b$，所以 $b=4a$。用 $a+b=1$ 得 $\pi=(0.2,0.8)$。代回两列得 $(0.12+0.08,0.08+0.72)=(0.2,0.8)$。
+
+若每天互换，乘一步会交换两项。稳态须满足 $a=b$ 且 $a+b=1$，所以新稳态为 $(1/2,1/2)$。从确定的雨天出发，奇数步确定晴，偶数步确定雨。分布来回跳，因此不收敛到这个稳态。
+
+\subsection{验收与反馈}
+合上答案，检查自己是否能独立列矩阵、算完整的两步分布、写稳态方程并验证概率和。发 M1、M2 的过程或照片，标出查看过提示的题，卡住时发写到的第一步即可。
+
+\end{document}
