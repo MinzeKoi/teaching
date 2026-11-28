@@ -1,0 +1,168 @@
+\documentclass[UTF8,a4paper,11pt]{ctexart}
+\usepackage[margin=22mm,headheight=14pt,footskip=12mm]{geometry}
+\usepackage{amsmath,amssymb,array,longtable,booktabs,tikz,needspace,fancyhdr,hyperref}
+\usepackage{microtype}
+\hypersetup{colorlinks=false,pdfborder={0 0 0},pdfauthor={Good Learning}}
+\IfFontExistsTF{MiSans}{\setCJKmainfont[BoldFont=MiSans Bold]{MiSans}\setCJKsansfont[BoldFont=MiSans Bold]{MiSans}}{}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\setlength{\LTleft}{0pt}\setlength{\LTright}{0pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{.65em}
+\linespread{1.18}
+\raggedbottom
+\setcounter{secnumdepth}{0}
+\ctexset{section={format=\Large\bfseries\sffamily,beforeskip=1.35em,afterskip=.65em},
+subsection={format=\large\bfseries\sffamily,beforeskip=1em,afterskip=.45em}}
+\newcommand{\chaptertitle}[1]{\Needspace{8\baselineskip}\noindent{\LARGE\bfseries\sffamily #1}\par\vspace{4mm}\hrule\vspace{6mm}}
+\newcommand{\CompactQuestion}[2]{\par\noindent\textbf{#1.}\ #2\par\vspace{.8em}}
+\newcommand{\PracticeQuestion}[3]{\par\Needspace{4\baselineskip}\noindent\begin{minipage}{\linewidth}\textbf{#1.}\ #2\par\noindent\rule{0pt}{#3mm}\par\end{minipage}\par}
+\newcommand{\CompactQuestionColon}[2]{\par\noindent\textbf{#1：}\ #2\par\vspace{.8em}}
+\newcommand{\PracticeQuestionColon}[3]{\par\Needspace{4\baselineskip}\noindent\begin{minipage}{\linewidth}\textbf{#1：}\ #2\par\noindent\rule{0pt}{#3mm}\par\end{minipage}\par}
+\pagestyle{fancy}\fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}
+\begin{document}
+\thispagestyle{empty}
+\noindent{\sffamily\footnotesize 每日课程}\hfill{\sffamily\footnotesize 学习导图}\par
+\vspace{7mm}
+\noindent{\sffamily\fontsize{25}{30}\selectfont\bfseries 第 15 天 · 第二轮复盘（紧凑排版型）}\par
+\vspace{4mm}\noindent\rule{\linewidth}{.85pt}\par\vspace{6mm}
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=stealth,every node/.style={font=\sffamily}]
+\path[use as bounding box] (-8.1,-18.7) rectangle (8.1,.4);
+\node[font=\sffamily\Large\bfseries] at (0,-.6) {三道题，各自先写哪一步};
+\node[font=\sffamily\small,text=black!55] at (0,-1.25) {闭卷写出中间结果，订正时找到第一处偏差};
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (-7.35,-2.35) {01};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (-6.199999999999999,-2.3200000000000003) {反传先算前向};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (-6.199999999999999,-3.0700000000000003) {写出每个 ReLU 的输入\\[.25em]算出预测值和预测误差};
+\draw[black!35,line width=.4pt] (-7.35,-5.050000000000001) -- (-0.2999999999999998,-5.050000000000001);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (0.85,-2.35) {02};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (2.0,-2.3200000000000003) {沿路径乘梯度};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (2.0,-3.0700000000000003) {ReLU 输入为负时截断梯度\\[.25em]每条路径用自己的局部导数};
+\draw[black!35,line width=.4pt] (0.85,-5.050000000000001) -- (7.8999999999999995,-5.050000000000001);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (-7.35,-7.7) {03};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (-6.199999999999999,-7.67) {卷积先数窗口};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (-6.199999999999999,-8.42) {高宽各用一次尺寸公式\\[.25em]窗口要完整放入输入};
+\draw[black!35,line width=.4pt] (-7.35,-10.4) -- (-0.2999999999999998,-10.4);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (0.85,-7.7) {04};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (2.0,-7.67) {核乘加再池化};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (2.0,-8.42) {按题设决定是否翻核\\[.25em]ReLU 后逐窗取最大值};
+\draw[black!35,line width=.4pt] (0.85,-10.4) -- (7.8999999999999995,-10.4);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (-7.35,-13.05) {05};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (-6.199999999999999,-13.020000000000001) {注意力先标行列};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (-6.199999999999999,-13.770000000000001) {行对应查询，列对应键\\[.25em]各头沿特征维拼接};
+\draw[black!35,line width=.4pt] (-7.35,-15.75) -- (-0.2999999999999998,-15.75);
+\node[anchor=north west,font=\sffamily\fontsize{22}{24}\selectfont\bfseries,text=black!50] at (0.85,-13.05) {06};
+\node[anchor=north west,text width=5.8cm,align=left,font=\sffamily\large\bfseries] at (2.0,-13.020000000000001) {掩码后再求权重};
+\node[anchor=north west,text width=5.9cm,align=left,font=\sffamily\small] at (2.0,-13.770000000000001) {屏蔽分数写负无穷\\[.25em]取指数后该项才是零};
+\draw[black!35,line width=.4pt] (0.85,-15.75) -- (7.8999999999999995,-15.75);
+\draw[->,black!55,line width=.8pt] (-.12,-3.7) -- (.55,-3.7);
+\draw[->,black!55,line width=.8pt] (-.12,-9.05) -- (.55,-9.05);
+\draw[->,black!55,line width=.8pt] (-.12,-14.4) -- (.55,-14.4);
+\node[font=\sffamily\small,text=black!55] at (0,-18.1) {30 分钟闭卷 · 20 分钟订正 · 10 分钟补漏或休息};
+\end{tikzpicture}
+\end{center}
+\clearpage
+
+\chaptertitle{第 15 天 · 第二轮复盘}
+\textbf{2026 年 11 月 29 日｜K11、K14、K18｜60 分钟}
+
+合上讲义时，你要能沿着计算顺序写出三道题的过程。神经网络先算输出再反推梯度，卷积先算输出大小再滑窗，注意力先确定可读位置再分配权重。
+
+\section{60 分钟安排}
+\begin{itemize}
+\item 30 分钟闭卷做 M1–M3。建议分别用 10、8、12 分钟。卡住时写下你能确定的第一步，再换下一题。
+\item 20 分钟订正。先对照答案圈出每题第一处偏差。回看对应例题，合上答案，用填步题和变式检查出错的步骤。做对的题用答案末尾的检查项自查。
+\item 10 分钟补漏或休息。还有不稳的步骤，就合上答案重做一次，并记下 12 月 4 日要复做的题号。
+\item 验收看 M1–M3。至少两题独立写出完整过程。中途看过例题或答案的题记为「提示后完成」，便于安排复做。
+\end{itemize}
+题目为新编题，对应备考计划中计算 3、6、27 的相关考点。M3 改变数据后复做错题本第 32–34 题的关键步骤。题干和答案都在本讲义内。
+
+\clearpage
+\section{单元 1 · 从损失往回乘梯度}
+前置只需要代入、乘法和平方。神经元先算 $z=wx+b$，再用 ReLU 得到 $h=\max(0,z)$。当 $z>0$，它把变化原样传回，局部导数是 1。当 $z<0$，局部导数是 0。本讲义的题都避开 $z=0$，该点没有普通导数。
+
+若预测为 $\hat y$，真值为 $y$，损失 $L=\frac12(\hat y-y)^2$ 对预测的导数为 $\hat y-y$。反传时从损失往参数走，沿路径乘每一步的局部导数。一个参数如果沿多条路径影响同一个损失，要把各条路径的贡献相加。
+
+\subsection{完整例题 · 一个隐藏神经元的梯度}
+已知 $x=2$，$z=wx-1$，$h=\max(0,z)$，$\hat y=vh$。令 $w=2$、$v=3$、$y=7$，用上面的平方损失求 $\partial L/\partial w$。
+
+\begin{enumerate}
+\item 前向算 $z=2(2)-1=3$、$h=3$、$\hat y=9$。保留 $z$，因为它的正负决定 ReLU 的导数。
+\item 预测比真值大 2，所以 $\partial L/\partial\hat y=2$。沿路径往回，$\hat y$ 对 $h$ 的导数是 3，$h$ 对 $z$ 的导数是 1，$z$ 对 $w$ 的导数是输入 2。
+\item 因此 $\partial L/\partial w=2\cdot3\cdot1\cdot2=12$。检查方向，在当前参数附近增大 $w$ 会使已经偏高的预测进一步升高，所以梯度为正。
+\end{enumerate}
+\subsection{举一反三}
+\CompactQuestion{A1}{例题只把真值改成 8。前向仍得 $z=3$、$\hat y=9$，填 $\partial L/\partial\hat y$ 和 $\partial L/\partial w$。}
+\CompactQuestion{A2}{恢复例题真值 $y=7$，把 $w$ 改为 0。独立写出 $z,h,\hat y$ 和 $\partial L/\partial w$。哪一个局部导数需要重新判断？}
+\clearpage
+\section{单元 2 · 先数窗口，再算窗口}
+前置是按行列读矩阵。输入一边长 $n$，核在对应方向长 $k$，每侧补 $p$ 个零，步长为正整数 $s$，且膨胀率为 1。若核能放入补零后的输入，该边输出长 $\lfloor(n+2p-k)/s\rfloor+1$。高和宽各算一次。最后一个窗口要完整落在补零后的输入内。
+
+本讲义按题目给出的核直接逐格相乘再求和，也就是深度学习中常用的互相关写法。若题目要求数学卷积的翻核约定，先按要求翻核。ReLU 逐格把负数变成 0。最大池化在每个窗口取最大值。
+
+\subsection{完整例题 · 两格的卷积输出}
+输入 $X=\begin{pmatrix}2&0&1\\1&3&2\end{pmatrix}$，核 $F=\begin{pmatrix}1&0\\0&-1\end{pmatrix}$。步长 1，每侧补零数为 0。先算卷积，再做 ReLU，最后用一个 $1\times2$ 的最大池化窗口覆盖结果。
+
+\begin{enumerate}
+\item 输出高 $\lfloor(2-2)/1\rfloor+1=1$，宽 $\lfloor(3-2)/1\rfloor+1=2$。核只能从左上角第 1 列和第 2 列开始。
+\item 核只有左上角的 1 和右下角的 $-1$ 有贡献。左窗得 $2-3=-1$，右窗得 $0-2=-2$，卷积输出为 $(-1,-2)$。
+\item ReLU 输出 $(0,0)$。池化取两格的最大值，得到 0。检查中间形状，ReLU 保持 $1\times2$，池化后为 $1\times1$。
+\end{enumerate}
+\subsection{举一反三}
+\CompactQuestion{B1}{例题只把 $X$ 的右下角从 2 改为 $-2$。左窗仍得 $-1$。补右窗结果、ReLU 输出与池化值。}
+\CompactQuestion{B2}{用原例题的 $X$ 和 $F$，卷积步长改为 2，仍不补零。求卷积输出的形状与数值，找出原来哪个窗口消失。原来的 $1\times2$ 池化窗口此时还能完整放入吗？}
+\clearpage
+\section{单元 3 · 注意力的掩码和行列}
+前置是矩阵形状和归一化。若单头的查询、键都有 $d_k$ 列，每个查询与每个键做一次点积，再除以 $\sqrt{d_k}$。交叉注意力的行对应目标侧查询，列对应源侧的键。若源侧位置是填充，就屏蔽那一列。目标侧自注意力用因果掩码时，第 $i$ 个查询只能读取第 1 至第 $i$ 列。
+
+把要屏蔽的分数设为 $-\infty$，取指数后才变成 0。如果分数填 0，指数会变成 1。每行至少保留一个可读的位置，再用各指数除以该行指数之和得到权重。各头输出沿列拼接，所以行数仍等于查询位置数。
+
+\subsection{完整例题 · 两个目标词读取三个源词}
+目标侧长 2，源侧长 3，模型宽 8，分成 2 个等宽头。每头的键、值和查询宽度相等。第 3 个源位置是填充。第 1 个目标查询的某头缩放分数为 $(0,\ln2,\ln4)$，三行值向量依次是 $(1,0,2,0)$、$(4,0,2,0)$、$(9,0,9,0)$。
+
+\begin{enumerate}
+\item 单头宽 $8/2=4$，所以 $W_Q$ 是 $8\times4$，$Q$ 是 $2\times4$，$K$ 是 $3\times4$。内侧的 4 相消，$QK^\top$ 的形状是 $2\times3$。
+\item 屏蔽第 3 列后，给定的一行为 $(0,\ln2,-\infty)$，指数为 $(1,2,0)$，权重为 $(1/3,2/3,0)$。权重之和为 1。
+\item 将权重乘到对应的值向量，单行输出为 $(3,0,2,0)$。该头的完整输出有 2 行、4 列。两头并排后是 $2\times8$。
+\end{enumerate}
+\subsection{举一反三}
+\CompactQuestion{C1}{沿用例题，把两列可读分数交换为 $(\ln2,0)$。第 3 列仍屏蔽。填这一行的权重和加权输出。}
+\CompactQuestion{C2}{改成 2 个目标位置上的自注意力，模型宽和头数沿用例题，第 1 行缩放分数为 $(0,\ln4)$。写出分数矩阵形状、第 1 行因果掩码后的分数与权重。说出与例题相比，列的来源和屏蔽依据分别变成了什么。}
+\clearpage
+\section{独立练习 · 三道闭卷短问}
+先尝试写算式和中间结果。检查时用最后的验收标准标记每题。
+
+\CompactQuestion{M1}{一个网络有两个 ReLU 隐藏神经元。给定 $x=2$，$z_1=w_1x-1$，$z_2=w_2x-3$，$h_i=\max(0,z_i)$，$\hat y=vh_1-h_2+1$。取 $w_1=2$、$w_2=1$、$v=2$、$y=3$，损失为 $L=\frac12(\hat y-y)^2$。求两个 $z_i$、两个 $h_i$、$\hat y$、$L$，再沿路径写出对 $w_1,w_2,v$ 的梯度。}
+\CompactQuestion{M2}{输入 $X=\begin{pmatrix}1&2&0\\0&5&6\\4&3&2\end{pmatrix}$，核 $F=\begin{pmatrix}1&0\\0&-1\end{pmatrix}$，卷积步长 1，无填充和偏置，核直接使用。卷积后做 ReLU，再用 $2\times2$ 窗口做最大池化，池化步长 2、不补零。写出各步形状、四个卷积窗的计算、ReLU 特征图和池化值。}
+\CompactQuestion{M3}{完成两个独立的小问。甲是交叉注意力，目标侧 3 个词，源侧 4 个位置，第 4 个是填充。模型宽 16，4 个等宽头，每头的查询、键、值同宽。写出单头 $W_Q,Q,K,QK^\top$ 的形状、被屏蔽的列、单头和拼接输出的形状。乙是 3 个目标位置上的因果自注意力，第 2 个查询的缩放分数为 $(0,\ln3,\ln5)$，三个标量值为 $(2,6,10)$。写出掩码后分数、指数、权重和输出。若另用从第 0 行开始、只含 3 行的绝对位置表，第 4 个词需要哪一行？怎样让它可用？}
+\clearpage
+\section{答案与解析 · 先作答再核对}
+\subsection{填步与变式}
+\textbf{A1.} 预测误差为 $9-8=1$，所以 $\partial L/\partial\hat y=1$。局部导数沿用例题，故 $\partial L/\partial w=1\cdot3\cdot1\cdot2=6$。
+
+\textbf{A2.} $z=-1$，所以 $h=0$、$\hat y=0$。ReLU 的局部导数变为 0，故 $\partial L/\partial w=(-7)\cdot3\cdot0\cdot2=0$。继续沿用导数 1 会把被 ReLU 截断的路径算进去。
+
+\textbf{B1.} 右窗得 $0-(-2)=2$。卷积输出为 $(-1,2)$，ReLU 后 $(0,2)$，最大池化得 2。负的输入与负的核系数相乘可以得到正数。
+
+\textbf{B2.} 输出高为 $\lfloor(2-2)/2\rfloor+1=1$，宽为 $\lfloor(3-2)/2\rfloor+1=1$。只保留左窗，结果为 $(-1)$。第 2 列起步的右窗被步长跳过，下一候选起点第 3 列会超界。没有填充时，原 $1\times2$ 池化窗口放不进 $1\times1$ 的输入。
+
+\textbf{C1.} 指数为 $(2,1,0)$，权重 $(2/3,1/3,0)$。前两行值按该权重相加，得到 $(2,0,2,0)$。可读分数一换，权重就更多落在第一行值上。
+
+\textbf{C2.} 行列都来自这两个目标位置，所以分数矩阵为 $2\times2$。查询位于位置 1，因果掩码屏蔽位置 2。第 1 行掩码后为 $(0,-\infty)$，指数为 $(1,0)$，权重为 $(1,0)$。屏蔽依据是列的位置晚于查询。
+
+\clearpage
+\subsection{混合题答案}
+\textbf{M1.} 前向得到 $z_1=2(2)-1=3$、$z_2=1(2)-3=-1$，所以 $h_1=3$、$h_2=0$，$\hat y=2(3)-0+1=7$，$L=\frac12(7-3)^2=8$。从预测误差 4 往回算。路径到 $w_1$ 的梯度是 $4\cdot2\cdot1\cdot2=16$。路径到 $w_2$ 的梯度是 $4\cdot(-1)\cdot0\cdot2=0$，因为第二个 ReLU 的输入为负。输出层参数 $v$ 直接乘在 $h_1$ 上，梯度为 $4\cdot3=12$。
+
+\textbf{M2.} 输入高宽均为 3，卷积输出高宽都是 $\lfloor(3-2)/1\rfloor+1=2$。按左上、右上、左下、右下的顺序，四窗得 $1-5=-4$、$2-6=-4$、$0-3=-3$、$5-2=3$。卷积矩阵为 $\begin{pmatrix}-4&-4\\-3&3\end{pmatrix}$，ReLU 后仍是 $2\times2$，得到 $\begin{pmatrix}0&0\\0&3\end{pmatrix}$。唯一的池化窗口恰好盖住这四格，得到 $1\times1$ 的输出 $(3)$。
+
+\textbf{M3.} 甲每头宽 $16/4=4$。$W_Q$ 为 $16\times4$，$Q$ 为 $3\times4$，$K$ 为 $4\times4$。乘上 $K^\top$ 得 $3\times4$ 的分数矩阵，行数取目标词数，列数取源位置数。第 4 列对应填充，整列屏蔽。单头输出为 $3\times4$，四头按列拼成 $3\times16$。
+
+乙的第 3 项在查询的未来。掩码后分数为 $(0,\ln3,-\infty)$，指数为 $(1,3,0)$，权重为 $(1/4,3/4,0)$，输出为 $2/4+18/4=5$。第 4 个词对应第 3 行。现有表只有第 0、1、2 行，需要扩展位置表，或改用支持该位置的位置编码。因果掩码只改变可读范围。
+
+\section{自检与反馈}
+\begin{itemize}
+\item M1 检查两道 ReLU 的输入正负，再看各条路径是否乘了正确的局部导数。
+\item M2 检查输出形状与滑窗个数是否相符，再核对核的方向和池化窗口。
+\item M3 分开检查投影参数和投影结果、分数和权重、拼接前后行数、位置表的起始编号。
+\item 可发 M1–M3 的步骤或手写照片。标上实际用时和每题「独立完成／提示后完成／待复做」即可。没写完也可以先发写到的那一步。
+\end{itemize}
+\end{document}
